@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Graphacss data
+   ========================================================================== */
+
+$values: (title1: 24, title2: 32, title3: 12, nouvelcol: 56);
+
+/* ==========================================================================
+   Graphacss parameters
+   ========================================================================== */
+
+$units: 'px'; // <$units> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
+$unitsFont: 'px';
+$defaultFont: 'Helvetica', sans-serif;
+
+// Sizes
+$graphicWidth: 800;
+$graphicHeight: 500;
+$barWidth: 30;
+$barMargin: 15;
+
+// Colors
+$graphicBackground: #EEE;
+$barColor: #0074D9;
+
+// Chart
+$valueMin: 0;
+$valueMax: 120;
+$legendGap: 10;
+$legendPosition: 'left'; // <$legendPosition> : [left | right]
+
+// Bar values displayed
+$displayValues: true; // <$displayValues> : [bool]
+$valuePrefix: '';
+$valueSuffix: '%';
+$valuePosition: 'outside'; // <$valuePosition> : [inside | outside]
+$valueFontFamily: $defaultFont;
+$valueFontSize: 18;
+$valueLineHeight: 20;
+$valueMarginBar: 5;
+$valueLines: 1;
+$valueHeight: $valueLineHeight*$valueLines+$valueMarginBar;
+
+// Bar labels
+$displayLabels: true; // <$displayLabels> : [bool]
+$labelPosition: 'bottom'; // <$labelPosition> : [top | bottom]
+$labelFontFamily: $defaultFont;
+$labelFontSize: 12;
+$labelLineHeight: 16;
+$labelMaxLines: 3;
+$labelHeight: $labelLineHeight*$labelMaxLines;
+
+/* ==========================================================================
+   Graphacss framework
+   ========================================================================== */
+
+//@warn type-of(decimal-ceil($valueMax/$legendStep, 0));
+$numberStep: decimal-ceil($valueMax/$legendGap, 0);
+//@warn("Steps : #{$numberStep}");
+$spaceStep: decimal-ceil($graphicHeight/$numberStep, 0);
+//@warn("Space between steps : #{$spaceStep}");
+$pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
+//@warn("Pixels by point : #{$pixelByPoint}");
+
+.graphacss {
+    position: relative;
+    display: block;
+    background-color: $graphicBackground;
+    width: to-length($graphicWidth, $units);
+    height: to-length($graphicHeight, $units);
+
+    &__steps {
+        &_step {
+            position: absolute;
+            display: block;
+            @if($legendPosition == 'left') {
+                left: 0;
+            } @else {
+                right: 0;
+            }
+            bottom: 0;
+
+            &:nth-child(0) {
+                content: "#{$valueMin}";
+            }
+
+            @for $i from 0 through $numberStep {
+                &:nth-child(#{$i}) {
+                    bottom: to-length($i*$spaceStep, $units);
+                    border-bottom: 1px solid $black;
+
+                    &:before {
+                        content: "#{$i*$legendGap}";
+                    }
+                }
+            }
+        }
+    }
+
+    &__bars {
+        &_bar {
+            position: absolute;
+            display: block;
+            bottom: 0;
+            width: to-length($barWidth, $units);
+            background-color: $barColor;
+
+            // Bars
+            $nbBar: 1;
+            @each $label, $value in $values {
+                &:nth-child(#{$nbBar}){
+                    left: to-length($nbBar*($barWidth+$barMargin), $units);
+                    height: to-length($value*$pixelByPoint, $units);
+
+                    @if($displayValues) {
+                        // Value
+                        &:before {
+                            content: "#{$valuePrefix+$value+$valueSuffix}";
+                            position: absolute;
+                            top: to-length(-$valueHeight, $unitsFont);
+                            height: to-length($valueHeight, $unitsFont);
+                            left: to-length(-$barMargin/2, $units);
+                            width: to-length($barWidth+$barMargin, $units);
+
+                            font-family: $valueFontFamily;
+                            font-size: to-length($valueFontSize, $unitsFont);
+                            line-height: to-length($valueLineHeight, $unitsFont);
+                            word-break: break-all;
+                            text-align: center;
+                        }
+                    }
+
+                    @if($displayLabels) {
+                        // Label
+                        &:after {
+                            content: "#{$label}";
+                            position: absolute;
+                            bottom: to-length(-$labelHeight, $unitsFont);
+                            height: to-length($labelHeight, $unitsFont);
+                            left: to-length(-$barMargin/2, $units);
+                            width: to-length($barWidth+$barMargin, $units);
+
+                            font-family: $labelFontFamily;
+                            font-size: to-length($labelFontSize, $unitsFont);
+                            line-height: to-length($labelLineHeight, $unitsFont);
+                            word-break: break-all;
+                            text-align: center;
+                        }
+                    }
+                }
+                $nbBar: $nbBar+1;
+            }
+        }
+    }
+}

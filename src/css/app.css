@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Graphacss data
+   ========================================================================== */
+/* ==========================================================================
+   Graphacss parameters
+   ========================================================================== */
+/* ==========================================================================
+   Graphacss framework
+   ========================================================================== */
+.graphacss {
+  position: relative;
+  display: block;
+  background-color: #EEE;
+  width: 800px;
+  height: 500px; }
+  .graphacss__steps_step {
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: 0; }
+    .graphacss__steps_step:nth-child(0) {
+      content: "0"; }
+    .graphacss__steps_step:nth-child(0) {
+      bottom: 0px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(0):before {
+        content: "0"; }
+    .graphacss__steps_step:nth-child(1) {
+      bottom: 41.67px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(1):before {
+        content: "10"; }
+    .graphacss__steps_step:nth-child(2) {
+      bottom: 83.34px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(2):before {
+        content: "20"; }
+    .graphacss__steps_step:nth-child(3) {
+      bottom: 125.01px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(3):before {
+        content: "30"; }
+    .graphacss__steps_step:nth-child(4) {
+      bottom: 166.68px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(4):before {
+        content: "40"; }
+    .graphacss__steps_step:nth-child(5) {
+      bottom: 208.35px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(5):before {
+        content: "50"; }
+    .graphacss__steps_step:nth-child(6) {
+      bottom: 250.02px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(6):before {
+        content: "60"; }
+    .graphacss__steps_step:nth-child(7) {
+      bottom: 291.69px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(7):before {
+        content: "70"; }
+    .graphacss__steps_step:nth-child(8) {
+      bottom: 333.36px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(8):before {
+        content: "80"; }
+    .graphacss__steps_step:nth-child(9) {
+      bottom: 375.03px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(9):before {
+        content: "90"; }
+    .graphacss__steps_step:nth-child(10) {
+      bottom: 416.7px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(10):before {
+        content: "100"; }
+    .graphacss__steps_step:nth-child(11) {
+      bottom: 458.37px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(11):before {
+        content: "110"; }
+    .graphacss__steps_step:nth-child(12) {
+      bottom: 500.04px;
+      border-bottom: 1px solid #111; }
+      .graphacss__steps_step:nth-child(12):before {
+        content: "120"; }
+  .graphacss__bars_bar {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    width: 30px;
+    background-color: #0074D9; }
+    .graphacss__bars_bar:nth-child(1) {
+      left: 45px;
+      height: 100.08px; }
+      .graphacss__bars_bar:nth-child(1):before {
+        content: "24%";
+        position: absolute;
+        top: -25px;
+        height: 25px;
+        left: -7.5px;
+        width: 45px;
+        font-family: "Helvetica", sans-serif;
+        font-size: 18px;
+        line-height: 20px;
+        word-break: break-all;
+        text-align: center; }
+      .graphacss__bars_bar:nth-child(1):after {
+        content: "title1";
+        position: absolute;
+        bottom: -48px;
+        height: 48px;
+        left: -7.5px;
+        width: 45px;
+        font-family: "Helvetica", sans-serif;
+        font-size: 12px;
+        line-height: 16px;
+        word-break: break-all;
+        text-align: center; }
+    .graphacss__bars_bar:nth-child(2) {
+      left: 90px;
+      height: 133.44px; }
+      .graphacss__bars_bar:nth-child(2):before {
+        content: "32%";
+        position: absolute;
+        top: -25px;
+        height: 25px;
+        left: -7.5px;
+        width: 45px;
+        font-family: "Helvetica", sans-serif;
+        font-size: 18px;
+        line-height: 20px;
+        word-break: break-all;
+        text-align: center; }
+      .graphacss__bars_bar:nth-child(2):after {
+        content: "title2";
+        position: absolute;
+        bottom: -48px;
+        height: 48px;
+        left: -7.5px;
+        width: 45px;
+        font-family: "Helvetica", sans-serif;
+        font-size: 12px;
+        line-height: 16px;
+        word-break: break-all;
+        text-align: center; }
+    .graphacss__bars_bar:nth-child(3) {
+      left: 135px;
+      height: 50.04px; }
+      .graphacss__bars_bar:nth-child(3):before {
+        content: "12%";
+        position: absolute;
+        top: -25px;
+        height: 25px;
+        left: -7.5px;
+        width: 45px;
+        font-family: "Helvetica", sans-serif;
+        font-size: 18px;
+        line-height: 20px;
+        word-break: break-all;
+        text-align: center; }
+      .graphacss__bars_bar:nth-child(3):after {
+        content: "title3";
+        position: absolute;
+        bottom: -48px;
+        height: 48px;
+        left: -7.5px;
+        width: 45px;
+        font-family: "Helvetica", sans-serif;
+        font-size: 12px;
+        line-height: 16px;
+        word-break: break-all;
+        text-align: center; }
+    .graphacss__bars_bar:nth-child(4) {
+      left: 180px;
+      height: 233.52px; }
+      .graphacss__bars_bar:nth-child(4):before {
+        content: "56%";
+        position: absolute;
+        top: -25px;
+        height: 25px;
+        left: -7.5px;
+        width: 45px;
+        font-family: "Helvetica", sans-serif;
+        font-size: 18px;
+        line-height: 20px;
+        word-break: break-all;
+        text-align: center; }
+      .graphacss__bars_bar:nth-child(4):after {
+        content: "nouvelcol";
+        position: absolute;
+        bottom: -48px;
+        height: 48px;
+        left: -7.5px;
+        width: 45px;
+        font-family: "Helvetica", sans-serif;
+        font-size: 12px;
+        line-height: 16px;
+        word-break: break-all;
+        text-align: center; }

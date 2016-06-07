@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Graphacss data
+   ========================================================================== */
+/* ==========================================================================
+   Graphacss parameters
+   ========================================================================== */
+/* ==========================================================================
+   Graphacss framework
+   ========================================================================== */
+.graphacss {
+  position: relative;
+  display: block;
+  background-color: #EEE;
+  width: 800px;
+  height: 500px; }
+  .graphacss__steps_step {
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: 0; }
+    .graphacss__steps_step:nth-child(0) {
+      content: 0; }
+    .graphacss__steps_step:nth-child(1) {
+      content: 1*14;
+      bottom: 1*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(2) {
+      content: 2*14;
+      bottom: 2*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(3) {
+      content: 3*14;
+      bottom: 3*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(4) {
+      content: 4*14;
+      bottom: 4*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(5) {
+      content: 5*14;
+      bottom: 5*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(6) {
+      content: 6*14;
+      bottom: 6*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(7) {
+      content: 7*14;
+      bottom: 7*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(8) {
+      content: 8*14;
+      bottom: 8*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(9) {
+      content: 9*14;
+      bottom: 9*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(10) {
+      content: 10*14;
+      bottom: 10*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(11) {
+      content: 11*14;
+      bottom: 11*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(12) {
+      content: 12*14;
+      bottom: 12*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(13) {
+      content: 13*14;
+      bottom: 13*decimal-ceil(18, 0)px; }
+    .graphacss__steps_step:nth-child(14) {
+      content: 14*14;
+      bottom: 14*decimal-ceil(18, 0)px; }
+  .graphacss__bars_bar {
+    width: 30px; }
+    .graphacss__bars_bar:nth-child(0) {
+      left: 0px;
+      height: 24*decimal-ceil(5px, 0)px; }
+    .graphacss__bars_bar:nth-child(1) {
+      left: 45px;
+      height: 32*decimal-ceil(5px, 0)px; }
+    .graphacss__bars_bar:nth-child(2) {
+      left: 90px;
+      height: 12*decimal-ceil(5px, 0)px; }
