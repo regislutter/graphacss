@@ -73,6 +73,8 @@ $spaceStep: decimal-ceil($graphicHeight/$numberStep, 0);
 $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
 //@warn("Pixels by point : #{$pixelByPoint}");
 
+// TODO Multiple charts generator : @function with parameters(className, values, barcolors)
+
 .graphacss {
     position: relative;
     display: block;
