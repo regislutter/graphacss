@@ -2,37 +2,49 @@
    Graphacss data
    ========================================================================== */
 
+// Values for your chart
 $values: (title1: 24, title2: 32, title3: 12, nouvelcol: 56);
+
+// Color for the bars (repeat automatically)
+$barColors: ($blue, $red, $navy);
 
 /* ==========================================================================
    Graphacss parameters
    ========================================================================== */
 
+// Units used for the elements (char, legend, bars, etc.)
 $units: 'px'; // <$units> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
+// Units used for the fonts
 $unitsFont: 'px';
+
+// Default font families
 $defaultFont: 'Helvetica', sans-serif;
 
-// Sizes
-$graphicWidth: 800;
-$graphicHeight: 500;
-$barWidth: 30;
-$barMargin: 15;
-
 // Colors
-$graphicBackground: #EEE;
-$barColor: #0074D9;
+$graphicBackground: #EEE; // Background of the chart
+$barColor: $blue; // Color of the bars
+$valueColor: #FFF; // Text color for the bar's value
+$labelColor: $black; // Text color for the bar's label
 
-// Chart
-$valueMin: 0;
-$valueMax: 120;
-$legendGap: 10;
-$legendPosition: 'left'; // <$legendPosition> : [left | right]
+// Chart sizes
+$graphicWidth: 800; // Width of the chart
+$graphicHeight: 500; // Height of the chart
+$barWidth: 50; // Width of the bars
+$barMargin: 15; // Margin between the bars
+$valueMin: 0; // Minimum value of the chart
+$valueMax: 120; // Maximum value of the chart
+$legendGap: 10; // Gap between the values in the legend
+$legendPosition: 'left'; // <$legendPosition> : [left | right] - Display the legend on the left or right
+
+// Group bars
+$groupBars: 3; // TODO Group the bars (useful for comparator)
+$groupMargin: 30;
 
 // Bar values displayed
-$displayValues: true; // <$displayValues> : [bool]
+$displayValues: true; // <$displayValues> : [bool] - Display values for the bars
 $valuePrefix: '';
 $valueSuffix: '%';
-$valuePosition: 'outside'; // <$valuePosition> : [inside | outside]
+$valuePosition: 'inside'; // <$valuePosition> : [inside | outside]
 $valueFontFamily: $defaultFont;
 $valueFontSize: 18;
 $valueLineHeight: 20;
@@ -102,7 +114,9 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
             display: block;
             bottom: 0;
             width: to-length($barWidth, $units);
-            background-color: $barColor;
+            @if(length($barColors) == 0) {
+                background-color: $barColor;
+            }
 
             // Bars
             $nbBar: 1;
@@ -111,16 +125,29 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
                     left: to-length($nbBar*($barWidth+$barMargin), $units);
                     height: to-length($value*$pixelByPoint, $units);
 
+                    @if(length($barColors) > 0) {
+                        $listIndex: (1-$nbBar)%length($barColors);
+                        background-color: nth($barColors, $listIndex+1);
+                    }
+
                     @if($displayValues) {
                         // Value
                         &:before {
                             content: "#{$valuePrefix+$value+$valueSuffix}";
                             position: absolute;
-                            top: to-length(-$valueHeight, $unitsFont);
-                            height: to-length($valueHeight, $unitsFont);
-                            left: to-length(-$barMargin/2, $units);
-                            width: to-length($barWidth+$barMargin, $units);
 
+                            @if ($valuePosition == 'outside'){
+                                top: to-length(-$valueHeight, $unitsFont);
+                                height: to-length($valueHeight, $unitsFont);
+                                left: to-length(-$barMargin/2, $units);
+                                width: to-length($barWidth+$barMargin, $units);
+                            } @else {
+                                height: auto;
+                                top: to-length($valueMarginBar, $units);
+                                width: to-length($barWidth, $units);
+                            }
+
+                            color: $valueColor;
                             font-family: $valueFontFamily;
                             font-size: to-length($valueFontSize, $unitsFont);
                             line-height: to-length($valueLineHeight, $unitsFont);
@@ -139,6 +166,7 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
                             left: to-length(-$barMargin/2, $units);
                             width: to-length($barWidth+$barMargin, $units);
 
+                            color: $labelColor;
                             font-family: $labelFontFamily;
                             font-size: to-length($labelFontSize, $unitsFont);
                             line-height: to-length($labelLineHeight, $unitsFont);
