@@ -3,7 +3,7 @@
    ========================================================================== */
 
 // Values for your chart
-$values: (title1: 24, title2: 32, title3: 12, nouvelcol: 56);
+$values: (AMD RX480: 24, GTX 1070: 32, GTX 1080: 36, AMD RX4801: 56, GTX 10701: 68, GTX 10801: 75, AMD RX4802: 45, GTX 10702: 72, GTX 10802: 74);
 
 // Color for the bars (repeat automatically)
 $barColors: ($blue, $red, $navy);
@@ -11,6 +11,9 @@ $barColors: ($blue, $red, $navy);
 /* ==========================================================================
    Graphacss parameters
    ========================================================================== */
+
+$graphType: 'vertical-bars'; // TODO [horizontal-bars | disc | points]
+$responsive: false; // TODO Responsive chart with flex
 
 // Units used for the elements (char, legend, bars, etc.)
 $units: 'px'; // <$units> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
@@ -30,15 +33,19 @@ $labelColor: $black; // Text color for the bar's label
 $graphicWidth: 800; // Width of the chart
 $graphicHeight: 500; // Height of the chart
 $barWidth: 50; // Width of the bars
-$barMargin: 15; // Margin between the bars
+$barMargin: 10; // Margin between the bars
+
+// Legend and values
 $valueMin: 0; // Minimum value of the chart
 $valueMax: 120; // Maximum value of the chart
 $legendGap: 10; // Gap between the values in the legend
 $legendPosition: 'left'; // <$legendPosition> : [left | right] - Display the legend on the left or right
+$backgroundLinesColor: $silver; // Color for the lines in the background
+$showBackgroundLines: true; // <$showBackgroundLines> : [bool] - Show the line inside the entire chart
 
 // Group bars
 $groupBars: 3; // TODO Group the bars (useful for comparator)
-$groupMargin: 30;
+$groupMargin: 50; // Added to the bar margin
 
 // Bar values displayed
 $displayValues: true; // <$displayValues> : [bool] - Display values for the bars
@@ -75,110 +82,130 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
 
 // TODO Multiple charts generator : @function with parameters(className, values, barcolors)
 
-.graphacss {
-    position: relative;
-    display: block;
-    background-color: $graphicBackground;
-    width: to-length($graphicWidth, $units);
-    height: to-length($graphicHeight, $units);
+@if($graphType == 'vertical-bars') {
+    .graphacss {
+        position: relative;
+        display: block;
+        background-color: $graphicBackground;
+        width: to-length($graphicWidth, $units);
+        height: to-length($graphicHeight, $units);
 
-    &__steps {
-        &_step {
-            position: absolute;
-            display: block;
-            @if($legendPosition == 'left') {
-                left: 0;
-            } @else {
-                right: 0;
-            }
-            bottom: 0;
+        &__steps {
+            &_step {
+                position: absolute;
+                display: block;
+                @if ($legendPosition == 'left') {
+                    left: 0;
+                } @else {
+                    right: 0;
+                }
+                bottom: 0;
 
-            &:nth-child(0) {
-                content: "#{$valueMin}";
-            }
+                &:nth-child(0) {
+                    content: "#{$valueMin}";
+                }
 
-            @for $i from 0 through $numberStep {
-                &:nth-child(#{$i}) {
-                    bottom: to-length($i*$spaceStep, $units);
-                    border-bottom: 1px solid $black;
+                @for $i from 0 through $numberStep {
+                    &:nth-child(#{$i}) {
+                        bottom: to-length($i*$spaceStep, $units);
+                        @if($showBackgroundLines){
+                            width: 100%;
+                        }
+                        border-bottom: 1px solid $backgroundLinesColor;
 
-                    &:before {
-                        content: "#{$i*$legendGap}";
+                        &:before {
+                            content: "#{$i*$legendGap}";
+                        }
                     }
                 }
             }
         }
-    }
 
-    &__bars {
-        &_bar {
-            position: absolute;
-            display: block;
-            bottom: 0;
-            width: to-length($barWidth, $units);
-            @if(length($barColors) == 0) {
-                background-color: $barColor;
-            }
+        &__bars {
+            &_bar {
+                position: absolute;
+                display: block;
+                bottom: 0;
+                width: to-length($barWidth, $units);
+                @if (length($barColors) == 0) {
+                    background-color: $barColor;
+                }
 
-            // Bars
-            $nbBar: 1;
-            @each $label, $value in $values {
-                &:nth-child(#{$nbBar}){
-                    left: to-length($nbBar*($barWidth+$barMargin), $units);
-                    height: to-length($value*$pixelByPoint, $units);
+                // Bars
+                $nbBar: 1;
+                @each $label, $value in $values {
+                    &:nth-child(#{$nbBar}) {
+                        $nbGroups: 0;
+                        @if($groupBars > 1){
+                            $nbGroups: ($nbBar - 1 - (($nbBar - 1)%$groupBars))/$groupBars; // Number of existing groups
+                        }
+                        left: to-length($nbBar*($barWidth+$barMargin)+$nbGroups*$groupMargin, $units);
+                        height: to-length($value*$pixelByPoint, $units);
+                        animation: growUp 2s ease-in-out forwards;
 
-                    @if(length($barColors) > 0) {
-                        $listIndex: (1-$nbBar)%length($barColors);
-                        background-color: nth($barColors, $listIndex+1);
-                    }
+                        @if (length($barColors) > 0) {
+                            $listIndex: (1-$nbBar)%length($barColors);
+                            background-color: nth($barColors, $listIndex+1);
+                        }
 
-                    @if($displayValues) {
-                        // Value
-                        &:before {
-                            content: "#{$valuePrefix+$value+$valueSuffix}";
-                            position: absolute;
+                        @if ($displayValues) {
+                            // Value
+                            &:before {
+                                content: "#{$valuePrefix+$value+$valueSuffix}";
+                                position: absolute;
 
-                            @if ($valuePosition == 'outside'){
-                                top: to-length(-$valueHeight, $unitsFont);
-                                height: to-length($valueHeight, $unitsFont);
+                                @if ($valuePosition == 'outside') {
+                                    top: to-length(-$valueHeight, $unitsFont);
+                                    height: to-length($valueHeight, $unitsFont);
+                                    left: to-length(-$barMargin/2, $units);
+                                    width: to-length($barWidth+$barMargin, $units);
+                                } @else {
+                                    height: auto;
+                                    top: to-length($valueMarginBar, $units);
+                                    width: to-length($barWidth, $units);
+                                }
+
+                                color: $valueColor;
+                                font-family: $valueFontFamily;
+                                font-size: to-length($valueFontSize, $unitsFont);
+                                line-height: to-length($valueLineHeight, $unitsFont);
+                                word-break: break-all;
+                                text-align: center;
+                            }
+                        }
+
+                        @if ($displayLabels) {
+                            // Label
+                            &:after {
+                                content: "#{$label}";
+                                position: absolute;
+                                bottom: to-length(-$labelHeight, $unitsFont);
+                                height: to-length($labelHeight, $unitsFont);
                                 left: to-length(-$barMargin/2, $units);
                                 width: to-length($barWidth+$barMargin, $units);
-                            } @else {
-                                height: auto;
-                                top: to-length($valueMarginBar, $units);
-                                width: to-length($barWidth, $units);
+
+                                color: $labelColor;
+                                font-family: $labelFontFamily;
+                                font-size: to-length($labelFontSize, $unitsFont);
+                                line-height: to-length($labelLineHeight, $unitsFont);
+                                text-align: center;
                             }
-
-                            color: $valueColor;
-                            font-family: $valueFontFamily;
-                            font-size: to-length($valueFontSize, $unitsFont);
-                            line-height: to-length($valueLineHeight, $unitsFont);
-                            word-break: break-all;
-                            text-align: center;
                         }
                     }
-
-                    @if($displayLabels) {
-                        // Label
-                        &:after {
-                            content: "#{$label}";
-                            position: absolute;
-                            bottom: to-length(-$labelHeight, $unitsFont);
-                            height: to-length($labelHeight, $unitsFont);
-                            left: to-length(-$barMargin/2, $units);
-                            width: to-length($barWidth+$barMargin, $units);
-
-                            color: $labelColor;
-                            font-family: $labelFontFamily;
-                            font-size: to-length($labelFontSize, $unitsFont);
-                            line-height: to-length($labelLineHeight, $unitsFont);
-                            word-break: break-all;
-                            text-align: center;
-                        }
-                    }
+                    $nbBar: $nbBar+1;
                 }
-                $nbBar: $nbBar+1;
             }
         }
     }
+} @else if($graphType == 'horizontal-bars') {
+
+}
+
+/* ==========================================================================
+   Graphacss animations
+   ========================================================================== */
+
+@keyframes growUp {
+    from { max-height: 0; }
+    to { max-height: to-length($graphicHeight, $units); }
 }
