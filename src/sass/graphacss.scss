@@ -5,8 +5,13 @@
 // Values for your chart
 $values: (AMD RX480: 24, GTX 1070: 32, GTX 1080: 36, AMD RX4801: 56, GTX 10701: 68, GTX 10801: 75, AMD RX4802: 45, GTX 10702: 72, GTX 10802: 74);
 
-// Color for the bars (repeat automatically)
-$barColors: ($teal, $orange, $olive);
+// Color scheme for the bars (repeat automatically)
+$sunset: ($teal, $orange, $yellow);
+$winteriscoming: ($aqua, $silver, $teal);
+$rgb: ($red, $green, $blue);
+$pumpkin: ($teal, $orange, $olive);
+// Color for the bars
+$barColors: $winteriscoming;
 
 /* ==========================================================================
    Graphacss parameters
@@ -26,7 +31,9 @@ $defaultFont: 'Helvetica', sans-serif;
 // Colors
 $graphicBackground: #EEE; // Background of the chart
 $barColor: $blue; // Color of the bars
-$valueColor: #FFF; // Text color for the bar's value
+$valueColorDefault: #FFF; // Default text color for the bar's value (used if you do not set contrast dark and light values)
+$valueColorDark: $black; // Color used to contrast with light background (YIQ contrast)
+$valueColorLight: #FFF; // Color used to contrast with dark background (YIQ contrast)
 $labelColor: $black; // Text color for the bar's label
 
 // Chart sizes
@@ -40,6 +47,10 @@ $valueMin: 0; // Minimum value of the chart
 $valueMax: 120; // Maximum value of the chart
 $legendGap: 10; // Gap between the values in the legend
 $legendPosition: 'left'; // <$legendPosition> : [left | right] - Display the legend on the left or right
+$legendFontFamily: $defaultFont;
+$legendFontSize: 14;
+$legendLineHeight: 16;
+$legendColor: $gray;
 $backgroundLinesColor: $silver; // Color for the lines in the background
 $showBackgroundLines: true; // <$showBackgroundLines> : [bool] - Show the line inside the entire chart
 
@@ -106,20 +117,27 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
                 }
                 bottom: 0;
 
-                &:nth-child(0) {
+                &:before {
+                    font-family: $legendFontFamily;
+                    font-size: to-length($legendFontSize, $unitsFont);
+                    line-height: to-length($legendLineHeight, $unitsFont);
+                    color: $legendColor;
+                }
+
+                &:nth-child(1):before {
                     content: "#{$valueMin}";
                 }
 
-                @for $i from 0 through $numberStep {
+                @for $i from 2 through $numberStep {
                     &:nth-child(#{$i}) {
-                        bottom: to-length($i*$spaceStep, $units);
+                        bottom: to-length(($i - 1)*$spaceStep, $units);
                         @if($showBackgroundLines){
                             width: 100%;
                         }
                         border-bottom: 1px solid $backgroundLinesColor;
 
                         &:before {
-                            content: "#{$i*$legendGap}";
+                            content: "#{($i - 1)*$legendGap}";
                         }
                     }
                 }
@@ -154,10 +172,11 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
                             animation: fadeIn $animationSpeed ease-in-out forwards;
                         }
 
-
+                        $barColorSwitch: false;
                         @if (length($barColors) > 0) {
                             $listIndex: (1-$nbBar)%length($barColors);
-                            background-color: nth($barColors, $listIndex+1);
+                            $barColorSwitch: nth($barColors, $listIndex+1);
+                            background-color: $barColorSwitch;
                         }
 
                         @if ($displayValues) {
@@ -177,7 +196,20 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
                                     width: to-length($barWidth, $units);
                                 }
 
-                                color: $valueColor;
+                                @if (length($barColors) == 0) {
+                                    background-color: $barColor;
+                                }
+                                @if ($barColorSwitch) {
+                                    // TODO if outside, contrast with chart background
+                                    @if($valueColorDark and $valueColorLight){
+                                        color: yiq-contrast-color($barColorSwitch, $valueColorDark, $valueColorLight);
+                                    } @else {
+                                        color: yiq-contrast-color($barColorSwitch);
+                                    }
+                                } @else {
+                                    color: $valueColorDefault;
+                                }
+
                                 font-family: $valueFontFamily;
                                 font-size: to-length($valueFontSize, $unitsFont);
                                 line-height: to-length($valueLineHeight, $unitsFont);

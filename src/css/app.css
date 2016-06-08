@@ -18,86 +18,79 @@
     display: block;
     left: 0;
     bottom: 0; }
-    .graphacss__steps_step:nth-child(0) {
+    .graphacss__steps_step:before {
+      font-family: "Helvetica", sans-serif;
+      font-size: 14px;
+      line-height: 16px;
+      color: #AAA; }
+    .graphacss__steps_step:nth-child(1):before {
       content: "0"; }
-    .graphacss__steps_step:nth-child(0) {
-      bottom: 0px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(0):before {
-        content: "0"; }
-    .graphacss__steps_step:nth-child(1) {
+    .graphacss__steps_step:nth-child(2) {
       bottom: 41.67px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(1):before {
+      .graphacss__steps_step:nth-child(2):before {
         content: "10"; }
-    .graphacss__steps_step:nth-child(2) {
+    .graphacss__steps_step:nth-child(3) {
       bottom: 83.34px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(2):before {
+      .graphacss__steps_step:nth-child(3):before {
         content: "20"; }
-    .graphacss__steps_step:nth-child(3) {
+    .graphacss__steps_step:nth-child(4) {
       bottom: 125.01px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(3):before {
+      .graphacss__steps_step:nth-child(4):before {
         content: "30"; }
-    .graphacss__steps_step:nth-child(4) {
+    .graphacss__steps_step:nth-child(5) {
       bottom: 166.68px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(4):before {
+      .graphacss__steps_step:nth-child(5):before {
         content: "40"; }
-    .graphacss__steps_step:nth-child(5) {
+    .graphacss__steps_step:nth-child(6) {
       bottom: 208.35px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(5):before {
+      .graphacss__steps_step:nth-child(6):before {
         content: "50"; }
-    .graphacss__steps_step:nth-child(6) {
+    .graphacss__steps_step:nth-child(7) {
       bottom: 250.02px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(6):before {
+      .graphacss__steps_step:nth-child(7):before {
         content: "60"; }
-    .graphacss__steps_step:nth-child(7) {
+    .graphacss__steps_step:nth-child(8) {
       bottom: 291.69px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(7):before {
+      .graphacss__steps_step:nth-child(8):before {
         content: "70"; }
-    .graphacss__steps_step:nth-child(8) {
+    .graphacss__steps_step:nth-child(9) {
       bottom: 333.36px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(8):before {
+      .graphacss__steps_step:nth-child(9):before {
         content: "80"; }
-    .graphacss__steps_step:nth-child(9) {
+    .graphacss__steps_step:nth-child(10) {
       bottom: 375.03px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(9):before {
+      .graphacss__steps_step:nth-child(10):before {
         content: "90"; }
-    .graphacss__steps_step:nth-child(10) {
+    .graphacss__steps_step:nth-child(11) {
       bottom: 416.7px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(10):before {
+      .graphacss__steps_step:nth-child(11):before {
         content: "100"; }
-    .graphacss__steps_step:nth-child(11) {
+    .graphacss__steps_step:nth-child(12) {
       bottom: 458.37px;
       width: 100%;
       border-bottom: 1px solid #DDD; }
-      .graphacss__steps_step:nth-child(11):before {
-        content: "110"; }
-    .graphacss__steps_step:nth-child(12) {
-      bottom: 500.04px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(12):before {
-        content: "120"; }
+        content: "110"; }
   .graphacss__bars_bar {
     position: absolute;
     display: block;
@@ -107,14 +100,14 @@
       left: 60px;
       height: 100.08px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #39CCCC; }
+      background-color: #7FDBFF; }
       .graphacss__bars_bar:nth-child(1):before {
         content: "24%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -136,14 +129,14 @@
       left: 120px;
       height: 133.44px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #FF851B; }
+      background-color: #DDD; }
       .graphacss__bars_bar:nth-child(2):before {
         content: "32%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -165,14 +158,14 @@
       left: 180px;
       height: 150.12px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #3D9970; }
+      background-color: #39CCCC; }
       .graphacss__bars_bar:nth-child(3):before {
         content: "36%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -194,14 +187,14 @@
       left: 290px;
       height: 233.52px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #39CCCC; }
+      background-color: #7FDBFF; }
       .graphacss__bars_bar:nth-child(4):before {
         content: "56%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -223,14 +216,14 @@
       left: 350px;
       height: 283.56px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #FF851B; }
+      background-color: #DDD; }
       .graphacss__bars_bar:nth-child(5):before {
         content: "68%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -252,14 +245,14 @@
       left: 410px;
       height: 312.75px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #3D9970; }
+      background-color: #39CCCC; }
       .graphacss__bars_bar:nth-child(6):before {
         content: "75%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -281,14 +274,14 @@
       left: 520px;
       height: 187.65px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #39CCCC; }
+      background-color: #7FDBFF; }
       .graphacss__bars_bar:nth-child(7):before {
         content: "45%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -310,14 +303,14 @@
       left: 580px;
       height: 300.24px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #FF851B; }
+      background-color: #DDD; }
       .graphacss__bars_bar:nth-child(8):before {
         content: "72%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -339,14 +332,14 @@
       left: 640px;
       height: 308.58px;
       animation: growUp 2s ease-in-out forwards;
-      background-color: #3D9970; }
+      background-color: #39CCCC; }
       .graphacss__bars_bar:nth-child(9):before {
         content: "74%";
         position: absolute;
         height: auto;
         top: 5px;
         width: 50px;
-        color: #FFF;
+        color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
