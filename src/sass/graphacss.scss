@@ -6,7 +6,7 @@
 $values: (AMD RX480: 24, GTX 1070: 32, GTX 1080: 36, AMD RX4801: 56, GTX 10701: 68, GTX 10801: 75, AMD RX4802: 45, GTX 10702: 72, GTX 10802: 74);
 
 // Color for the bars (repeat automatically)
-$barColors: ($blue, $red, $navy);
+$barColors: ($teal, $orange, $olive);
 
 /* ==========================================================================
    Graphacss parameters
@@ -67,6 +67,11 @@ $labelFontSize: 12;
 $labelLineHeight: 16;
 $labelMaxLines: 3;
 $labelHeight: $labelLineHeight*$labelMaxLines;
+
+// Animations
+$animationType: 'height'; // <$animationType> : [fade | height | width | none]
+$animationSpeed: 2s; // <$animationSpeed> : [duration]
+$animationSpeedValue: 0; // <$animationSpeedLabel> : [duration] - 0 to disable
 
 /* ==========================================================================
    Graphacss framework
@@ -141,7 +146,14 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
                         }
                         left: to-length($nbBar*($barWidth+$barMargin)+$nbGroups*$groupMargin, $units);
                         height: to-length($value*$pixelByPoint, $units);
-                        animation: growUp 2s ease-in-out forwards;
+                        @if($animationType == 'height'){
+                            animation: growUp $animationSpeed ease-in-out forwards;
+                        } @else if($animationType == 'width'){
+                            animation: expandLeft $animationSpeed ease-in-out forwards;
+                        } @else if($animationType == 'fade'){
+                            animation: fadeIn $animationSpeed ease-in-out forwards;
+                        }
+
 
                         @if (length($barColors) > 0) {
                             $listIndex: (1-$nbBar)%length($barColors);
@@ -171,6 +183,11 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
                                 line-height: to-length($valueLineHeight, $unitsFont);
                                 word-break: break-all;
                                 text-align: center;
+
+                                @if($animationType != 'none' and $animationSpeedValue != 0){
+                                    opacity: 0;
+                                    animation: fadeIn $animationSpeedValue ease-in-out $animationSpeed forwards;
+                                }
                             }
                         }
 
@@ -205,7 +222,20 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
    Graphacss animations
    ========================================================================== */
 
+// Fade
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+// Height
 @keyframes growUp {
     from { max-height: 0; }
     to { max-height: to-length($graphicHeight, $units); }
+}
+
+// Width
+@keyframes expandLeft {
+    from { max-width: 0; }
+    to { max-width: to-length($graphicWidth, $units); }
 }
