@@ -1,0 +1,6 @@
+{
+  "name": "Graphacss",
+  "tagline": "A graphic generator in SASS",
+  "body": "### Welcome to Graphacss.\r\nGraphacss is a graphic generator made with SASS and with the goal to create lightweight animated graphics using only HTML and CSS.\r\n\r\n### Authors and Contributors\r\nMy name is [Régis Lutter](http://zetura.fr), I'm a French web developer leaving in Québec, Canada.\r\nYou can follow me on Twitter: [@regislutter](https://twitter.com/regislutter).",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
