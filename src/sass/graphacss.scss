@@ -17,9 +17,10 @@ $barColors: $rgb;
    Graphacss parameters
    ========================================================================== */
 
-//$graphType: 'vertical-bars'; // TODO [vertical-bars | horizontal-bars | disc | points]
-$graphType: 'horizontal-bars';
-$responsive: false; // TODO Responsive chart with flex
+$graphType: 'vertical-bars'; // TODO [vertical-bars | horizontal-bars | disc | points]
+$flexGraphFullsize: true; // <$flexFullsize> : [bool]
+//$graphType: 'horizontal-bars';
+//$responsive: false; // TODO Responsive chart with flex
 
 // Units used for the elements (char, legend, bars, etc.)
 $units: 'px'; // <$units> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
@@ -42,7 +43,7 @@ $labelColorLight: #FFF; // Color used to contrast with dark background (YIQ cont
 // Chart sizes
 $graphicWidth: 800; // Width of the chart
 $graphicHeight: 500; // Height of the chart
-$barWidth: 30; // Width of the bars (or height for horizontal graph)
+$barWidth: 50; // Width of the bars (or height for horizontal graph) if flex not full width
 $barMargin: 10; // Margin between the bars
 
 // Legend and values
@@ -108,6 +109,12 @@ $legendAxe: 'bottom';
     $legendAxe: 'top';
 }
 
+// Flex variables
+$flexOrientation: 'row';
+$flexJustify: 'flex-start'; // TODO option for flex-start, space-between, space-around, center
+$flexAlign: 'flex-end';
+$flexPadding: 40;
+
 @if($graphType == 'horizontal-bars') {
     $spaceStep: decimal-ceil($graphicWidth/$numberStep, 0);
     $pixelByPoint: decimal-ceil($graphicWidth/$valueMax, 0);
@@ -121,6 +128,11 @@ $legendAxe: 'bottom';
     @if($legendPosition == 'right'){
         $legendAxe: 'right';
     }
+
+    // Flex variables
+    $flexOrientation: 'column';
+    $flexJustify: 'flex-start';
+    $flexAlign: 'flex-start';
 }
 
 // TODO Multiple charts generator : @function with parameters(className, values, barcolors)
@@ -260,7 +272,6 @@ $legendAxe: 'bottom';
                             font-family: $valueFontFamily;
                             font-size: to-length($valueFontSize, $unitsFont);
                             line-height: to-length($valueLineHeight, $unitsFont);
-                            word-break: break-all;
                             text-align: center;
 
                             @if($animationType != 'none' and $animationSpeedValue != 0){
@@ -302,6 +313,219 @@ $legendAxe: 'bottom';
                             } @else {
                                 bottom: to-length(-$labelHeight, $unitsFont);
                                 left: to-length(-$barMargin/2, $units);
+                                color: $labelColorDefault;
+                            }
+
+                            font-family: $labelFontFamily;
+                            font-size: to-length($labelFontSize, $unitsFont);
+                            line-height: to-length($labelLineHeight, $unitsFont);
+                            text-align: center;
+                        }
+                    }
+                }
+                $nbBar: $nbBar+1;
+            }
+        }
+    }
+}
+
+.graphacss-flex {
+    position: relative;
+    display: block;
+    background-color: $graphicBackground;
+    width: to-length($graphicWidth, $units);
+    height: to-length($graphicHeight, $units);
+
+    &__steps {
+        &_step {
+            position: absolute;
+            display: block;
+            #{$legendAxe}: 0;
+            #{$orientationY}: 0;
+
+            &:before {
+                font-family: $legendFontFamily;
+                font-size: to-length($legendFontSize, $unitsFont);
+                line-height: to-length($legendLineHeight, $unitsFont);
+                color: $legendColor;
+            }
+
+            &:nth-child(1):before {
+                content: "#{$valueMin}";
+            }
+
+            @for $i from 2 through $numberStep {
+                &:nth-child(#{$i}) {
+                    #{$orientationY}: to-length(($i - 1)*$spaceStep, $units);
+                    @if($showBackgroundLines) {
+                        #{$sizeX}: 100%;
+                    }
+
+                    border-#{$orientationY}: 1px solid $backgroundLinesColor;
+
+                    &:before {
+                        content: "#{($i - 1)*$legendGap}";
+                    }
+                }
+            }
+        }
+    }
+
+    &__bars {
+        display: flex;
+        //flex-flow: #{$flexOrientation+' nowrap'};
+        flex-direction: #{$flexOrientation};
+        flex-wrap: nowrap;
+        justify-content: #{$flexJustify};
+        align-items: #{$flexAlign};
+        width: 100%;
+        height: 100%;
+
+        &_bar {
+            display: flex;
+            position: relative;
+            align-items: center;
+
+            margin-#{$orientationXopposite}: to-length($barMargin, $units);
+            &:first-of-type {
+                margin-#{$orientationX}: to-length($flexPadding, $units);
+            }
+            &:last-of-type {
+                margin-#{$orientationXopposite}: to-length($flexPadding, $units);
+            }
+            @if($flexGraphFullsize){
+                flex-grow: 1;
+            }
+
+            #{$sizeX}: to-length($barWidth, $units);
+            @if (length($barColors) == 0) {
+                background-color: $barColor;
+            }
+
+            @if($graphType == 'horizontal-bars'){
+                flex-direction: row-reverse;
+                @if($valuePosition == 'inside'){
+                    justify-content: space-between;
+                } @else {
+                    justify-content: flex-end;
+                }
+            } @else {
+                flex-direction: column;
+            }
+
+            // Bars
+            $nbBar: 1;
+            @each $label, $value in $values {
+                &:nth-child(#{$nbBar}) {
+                    @if($nbBar != 1 and ($nbBar - 1)%$groupBars == 0){
+                        margin-#{$orientationX}: to-length($groupMargin, $units);
+                    }
+                    #{$sizeY}: to-length($value*$pixelByPoint, $units);
+                    //@if($animationType == 'height'){
+                    //    animation: growUp $animationSpeed ease-in-out forwards;
+                    //} @else if($animationType == 'width'){
+                    //    animation: expandLeft $animationSpeed ease-in-out forwards;
+                    //} @else if($animationType == 'fade'){
+                    //    animation: fadeIn $animationSpeed ease-in-out forwards;
+                    //}
+
+                    $barColorSwitch: false;
+                    @if (length($barColors) > 0) {
+                        $listIndex: (1-$nbBar)%length($barColors);
+                        $barColorSwitch: nth($barColors, $listIndex+1);
+                        background-color: $barColorSwitch;
+                    }
+
+                    @if ($displayValues) {
+                        // Value
+                        &:before {
+                            //@if($graphType == 'vertical-bars'){
+                            //    position: absolute;
+                            //}
+
+                            content: "#{$valuePrefix+$value+$valueSuffix}";
+
+                            @if ($valuePosition == 'outside') {
+                                position: absolute;
+
+                                @if($graphType == 'horizontal-bars'){
+                                    right: to-length(-$barWidth*2, $units);
+                                    top: 2px;
+                                    text-align: left;
+                                } @else {
+                                    width: 100%;
+                                    top: to-length(-$valueHeight, $unitsFont);
+                                    text-align: center;
+                                }
+
+                                // Contrast with chart's background color
+                                @if($valueColorDark and $valueColorLight){
+                                    color: yiq-contrast-color($graphicBackground, $valueColorDark, $valueColorLight);
+                                } @else {
+                                    color: yiq-contrast-color($graphicBackground);
+                                }
+                            } @else {
+                                margin-#{$orientationYopposite}: to-length($valueMarginBar, $unitsFont);
+
+                                // Text color
+                                @if ($barColorSwitch) {
+                                    // Contrast with bar's background color
+                                    @if($valueColorDark and $valueColorLight){
+                                        color: yiq-contrast-color($barColorSwitch, $valueColorDark, $valueColorLight);
+                                    } @else {
+                                        color: yiq-contrast-color($barColorSwitch);
+                                    }
+                                } @else {
+                                    // Contrast with bar's background color
+                                    @if($valueColorDark and $valueColorLight){
+                                        color: yiq-contrast-color($barColor, $valueColorDark, $valueColorLight);
+                                    } @else {
+                                        color: $valueColorDefault;
+                                    }
+                                }
+                                text-align: center;
+                                line-height: to-length($valueLineHeight, $unitsFont);
+                            }
+
+                            font-family: $valueFontFamily;
+                            font-size: to-length($valueFontSize, $unitsFont);
+
+                            @if($animationType != 'none' and $animationSpeedValue != 0){
+                                opacity: 0;
+                                animation: fadeIn $animationSpeedValue ease-in-out $animationSpeed forwards;
+                            }
+                        }
+                    }
+
+                    @if ($displayLabels) {
+                        // Label
+                        &:after {
+                            content: "#{$label}";
+
+                            @if($graphType == 'horizontal-bars'){
+                                margin-left: to-length($valueMarginBar, $unitsFont);
+
+                                // Text color
+                                @if ($barColorSwitch) {
+                                    // Contrast with bar's background color
+                                    @if($labelColorDark and $labelColorLight){
+                                        color: yiq-contrast-color($barColorSwitch, $labelColorDark, $labelColorLight);
+                                    } @else {
+                                        color: yiq-contrast-color($barColorSwitch);
+                                    }
+                                } @else {
+                                    // Contrast with bar's background color
+                                    @if($labelColorDark and $labelColorLight){
+                                        color: yiq-contrast-color($barColor, $labelColorDark, $labelColorLight);
+                                    } @else {
+                                        color: $labelColorDefault;
+                                    }
+                                }
+                            } @else {
+                                position: absolute;
+                                width: 100%;
+                                height: to-length($labelHeight, $unitsFont);
+                                bottom: to-length(-$labelHeight, $unitsFont);
                                 color: $labelColorDefault;
                             }
 
