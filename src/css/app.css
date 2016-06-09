@@ -17,7 +17,7 @@
     position: absolute;
     display: block;
     left: 0;
-    bottom: 0; }
+    left: 0; }
     .graphacss__steps_step:before {
       font-family: "Helvetica", sans-serif;
       font-size: 14px;
@@ -26,88 +26,88 @@
     .graphacss__steps_step:nth-child(1):before {
       content: "0"; }
     .graphacss__steps_step:nth-child(2) {
-      bottom: 41.67px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 66.67px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(2):before {
         content: "10"; }
     .graphacss__steps_step:nth-child(3) {
-      bottom: 83.34px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 133.34px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(3):before {
         content: "20"; }
     .graphacss__steps_step:nth-child(4) {
-      bottom: 125.01px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 200.01px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(4):before {
         content: "30"; }
     .graphacss__steps_step:nth-child(5) {
-      bottom: 166.68px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 266.68px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(5):before {
         content: "40"; }
     .graphacss__steps_step:nth-child(6) {
-      bottom: 208.35px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 333.35px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(6):before {
         content: "50"; }
     .graphacss__steps_step:nth-child(7) {
-      bottom: 250.02px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 400.02px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(7):before {
         content: "60"; }
     .graphacss__steps_step:nth-child(8) {
-      bottom: 291.69px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 466.69px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(8):before {
         content: "70"; }
     .graphacss__steps_step:nth-child(9) {
-      bottom: 333.36px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 533.36px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(9):before {
         content: "80"; }
     .graphacss__steps_step:nth-child(10) {
-      bottom: 375.03px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 600.03px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(10):before {
         content: "90"; }
     .graphacss__steps_step:nth-child(11) {
-      bottom: 416.7px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 666.7px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(11):before {
         content: "100"; }
     .graphacss__steps_step:nth-child(12) {
-      bottom: 458.37px;
-      width: 100%;
-      border-bottom: 1px solid #DDD; }
+      left: 733.37px;
+      height: 100%;
+      border-left: 1px solid #DDD; }
       .graphacss__steps_step:nth-child(12):before {
         content: "110"; }
   .graphacss__bars_bar {
     position: absolute;
     display: block;
-    bottom: 0;
-    width: 50px; }
+    left: 0;
+    height: 30px; }
     .graphacss__bars_bar:nth-child(1) {
-      left: 60px;
-      height: 100.08px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #7FDBFF; }
+      top: 40px;
+      width: 160.08px;
+      background-color: #FF4136; }
       .graphacss__bars_bar:nth-child(1):before {
         content: "24%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
-        color: #111;
+        width: 45px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -116,26 +116,26 @@
       .graphacss__bars_bar:nth-child(1):after {
         content: "AMD RX480";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
-        color: #111;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
         text-align: center; }
     .graphacss__bars_bar:nth-child(2) {
-      left: 120px;
-      height: 133.44px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #DDD; }
+      top: 80px;
+      width: 213.44px;
+      background-color: #2ECC40; }
       .graphacss__bars_bar:nth-child(2):before {
         content: "32%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
+        width: 45px;
         color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
@@ -145,27 +145,27 @@
       .graphacss__bars_bar:nth-child(2):after {
         content: "GTX 1070";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
         color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
         text-align: center; }
     .graphacss__bars_bar:nth-child(3) {
-      left: 180px;
-      height: 150.12px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #39CCCC; }
+      top: 120px;
+      width: 240.12px;
+      background-color: #0074D9; }
       .graphacss__bars_bar:nth-child(3):before {
         content: "36%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
-        color: #111;
+        width: 45px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -174,27 +174,27 @@
       .graphacss__bars_bar:nth-child(3):after {
         content: "GTX 1080";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
-        color: #111;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
         text-align: center; }
     .graphacss__bars_bar:nth-child(4) {
-      left: 290px;
-      height: 233.52px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #7FDBFF; }
+      top: 190px;
+      width: 373.52px;
+      background-color: #FF4136; }
       .graphacss__bars_bar:nth-child(4):before {
         content: "56%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
-        color: #111;
+        width: 45px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -203,26 +203,26 @@
       .graphacss__bars_bar:nth-child(4):after {
         content: "AMD RX4801";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
-        color: #111;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
         text-align: center; }
     .graphacss__bars_bar:nth-child(5) {
-      left: 350px;
-      height: 283.56px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #DDD; }
+      top: 230px;
+      width: 453.56px;
+      background-color: #2ECC40; }
       .graphacss__bars_bar:nth-child(5):before {
         content: "68%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
+        width: 45px;
         color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
@@ -232,27 +232,27 @@
       .graphacss__bars_bar:nth-child(5):after {
         content: "GTX 10701";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
         color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
         text-align: center; }
     .graphacss__bars_bar:nth-child(6) {
-      left: 410px;
-      height: 312.75px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #39CCCC; }
+      top: 270px;
+      width: 500.25px;
+      background-color: #0074D9; }
       .graphacss__bars_bar:nth-child(6):before {
         content: "75%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
-        color: #111;
+        width: 45px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -261,27 +261,27 @@
       .graphacss__bars_bar:nth-child(6):after {
         content: "GTX 10801";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
-        color: #111;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
         text-align: center; }
     .graphacss__bars_bar:nth-child(7) {
-      left: 520px;
-      height: 187.65px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #7FDBFF; }
+      top: 340px;
+      width: 300.15px;
+      background-color: #FF4136; }
       .graphacss__bars_bar:nth-child(7):before {
         content: "45%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
-        color: #111;
+        width: 45px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -290,26 +290,26 @@
       .graphacss__bars_bar:nth-child(7):after {
         content: "AMD RX4802";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
-        color: #111;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
         text-align: center; }
     .graphacss__bars_bar:nth-child(8) {
-      left: 580px;
-      height: 300.24px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #DDD; }
+      top: 380px;
+      width: 480.24px;
+      background-color: #2ECC40; }
       .graphacss__bars_bar:nth-child(8):before {
         content: "72%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
+        width: 45px;
         color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
@@ -319,27 +319,27 @@
       .graphacss__bars_bar:nth-child(8):after {
         content: "GTX 10702";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
         color: #111;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
         text-align: center; }
     .graphacss__bars_bar:nth-child(9) {
-      left: 640px;
-      height: 308.58px;
-      animation: growUp 2s ease-in-out forwards;
-      background-color: #39CCCC; }
+      top: 420px;
+      width: 493.58px;
+      background-color: #0074D9; }
       .graphacss__bars_bar:nth-child(9):before {
         content: "74%";
         position: absolute;
         height: auto;
+        right: 5px;
         top: 5px;
-        width: 50px;
-        color: #111;
+        width: 45px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 18px;
         line-height: 20px;
@@ -348,11 +348,11 @@
       .graphacss__bars_bar:nth-child(9):after {
         content: "GTX 10802";
         position: absolute;
-        bottom: -48px;
-        height: 48px;
-        left: -5px;
-        width: 60px;
-        color: #111;
+        height: 32px;
+        width: 40px;
+        left: 5px;
+        top: -1px;
+        color: #FFF;
         font-family: "Helvetica", sans-serif;
         font-size: 12px;
         line-height: 16px;
