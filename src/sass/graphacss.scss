@@ -190,24 +190,34 @@ $pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
                                     height: to-length($valueHeight, $unitsFont);
                                     left: to-length(-$barMargin/2, $units);
                                     width: to-length($barWidth+$barMargin, $units);
+
+                                    // Text color
+                                    @if ($barColorSwitch) {
+                                        // Contrast with chart's background color
+                                        @if($valueColorDark and $valueColorLight){
+                                            color: yiq-contrast-color($graphicBackground, $valueColorDark, $valueColorLight);
+                                        } @else {
+                                            color: yiq-contrast-color($graphicBackground);
+                                        }
+                                    } @else {
+                                        color: $valueColorDefault;
+                                    }
                                 } @else {
                                     height: auto;
                                     top: to-length($valueMarginBar, $units);
                                     width: to-length($barWidth, $units);
-                                }
 
-                                @if (length($barColors) == 0) {
-                                    background-color: $barColor;
-                                }
-                                @if ($barColorSwitch) {
-                                    // TODO if outside, contrast with chart background
-                                    @if($valueColorDark and $valueColorLight){
-                                        color: yiq-contrast-color($barColorSwitch, $valueColorDark, $valueColorLight);
+                                    // Text color
+                                    @if ($barColorSwitch) {
+                                        // Contrast with bar's background color
+                                        @if($valueColorDark and $valueColorLight){
+                                            color: yiq-contrast-color($barColorSwitch, $valueColorDark, $valueColorLight);
+                                        } @else {
+                                            color: yiq-contrast-color($barColorSwitch);
+                                        }
                                     } @else {
-                                        color: yiq-contrast-color($barColorSwitch);
+                                        color: $valueColorDefault;
                                     }
-                                } @else {
-                                    color: $valueColorDefault;
                                 }
 
                                 font-family: $valueFontFamily;
