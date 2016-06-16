@@ -18,6 +18,7 @@ $barColors: $sunset; // Colors for the bars
 
 $demo2Parameters: $defaultParameters;
 $demo2Parameters: map-merge($demo2Parameters, (graph-type: 'horizontal-bars'));
+$demo2Parameters: map-merge($demo2Parameters, (value-position: 'inside'));
 // Initialize values
 $values: (First: 24, Second: 32, Rocks: 36, Flop: 56, Croc: 68, Top: 75); // Data
 $barColors: $winteriscoming; // Colors for the bars

@@ -469,7 +469,7 @@
       flex-grow: 1;
       height: 50px;
       flex-direction: row-reverse;
-      justify-content: flex-end; }
+      justify-content: space-between; }
       .demo2__bars_bar:first-of-type {
         margin-top: 10px; }
       .demo2__bars_bar:last-of-type {
@@ -480,13 +480,10 @@
         background-color: #7FDBFF; }
         .demo2__bars_bar:nth-child(1):before {
           content: "24%";
-          position: absolute;
-          top: 50%;
-          left: 100%;
-          padding-left: 5px;
-          text-align: left;
-          line-height: 0;
+          margin-right: 5px;
           color: #111;
+          text-align: center;
+          line-height: 100%;
           font-family: "Helvetica", sans-serif;
           font-size: 18px; }
         .demo2__bars_bar:nth-child(1):after {
@@ -497,7 +494,9 @@
           position: absolute;
           top: 50%;
           line-height: 0;
-          right: 5px;
+          left: 100%;
+          width: 100%;
+          margin-left: 5px;
           color: #111; }
       .demo2__bars_bar:nth-child(2) {
         width: 320px;
@@ -505,13 +504,10 @@
         background-color: #DDD; }
         .demo2__bars_bar:nth-child(2):before {
           content: "32%";
-          position: absolute;
-          top: 50%;
-          left: 100%;
-          padding-left: 5px;
-          text-align: left;
-          line-height: 0;
+          margin-right: 5px;
           color: #111;
+          text-align: center;
+          line-height: 100%;
           font-family: "Helvetica", sans-serif;
           font-size: 18px; }
         .demo2__bars_bar:nth-child(2):after {
@@ -522,7 +518,9 @@
           position: absolute;
           top: 50%;
           line-height: 0;
-          right: 5px;
+          left: 100%;
+          width: 100%;
+          margin-left: 5px;
           color: #111; }
       .demo2__bars_bar:nth-child(3) {
         width: 360px;
@@ -530,13 +528,10 @@
         background-color: #39CCCC; }
         .demo2__bars_bar:nth-child(3):before {
           content: "36%";
-          position: absolute;
-          top: 50%;
-          left: 100%;
-          padding-left: 5px;
-          text-align: left;
-          line-height: 0;
+          margin-right: 5px;
           color: #111;
+          text-align: center;
+          line-height: 100%;
           font-family: "Helvetica", sans-serif;
           font-size: 18px; }
         .demo2__bars_bar:nth-child(3):after {
@@ -547,7 +542,9 @@
           position: absolute;
           top: 50%;
           line-height: 0;
-          right: 5px;
+          left: 100%;
+          width: 100%;
+          margin-left: 5px;
           color: #111; }
       .demo2__bars_bar:nth-child(4) {
         margin-top: 30px;
@@ -556,13 +553,10 @@
         background-color: #7FDBFF; }
         .demo2__bars_bar:nth-child(4):before {
           content: "56%";
-          position: absolute;
-          top: 50%;
-          left: 100%;
-          padding-left: 5px;
-          text-align: left;
-          line-height: 0;
+          margin-right: 5px;
           color: #111;
+          text-align: center;
+          line-height: 100%;
           font-family: "Helvetica", sans-serif;
           font-size: 18px; }
         .demo2__bars_bar:nth-child(4):after {
@@ -573,7 +567,9 @@
           position: absolute;
           top: 50%;
           line-height: 0;
-          right: 5px;
+          left: 100%;
+          width: 100%;
+          margin-left: 5px;
           color: #111; }
       .demo2__bars_bar:nth-child(5) {
         width: 680px;
@@ -581,13 +577,10 @@
         background-color: #DDD; }
         .demo2__bars_bar:nth-child(5):before {
           content: "68%";
-          position: absolute;
-          top: 50%;
-          left: 100%;
-          padding-left: 5px;
-          text-align: left;
-          line-height: 0;
+          margin-right: 5px;
           color: #111;
+          text-align: center;
+          line-height: 100%;
           font-family: "Helvetica", sans-serif;
           font-size: 18px; }
         .demo2__bars_bar:nth-child(5):after {
@@ -598,7 +591,9 @@
           position: absolute;
           top: 50%;
           line-height: 0;
-          right: 5px;
+          left: 100%;
+          width: 100%;
+          margin-left: 5px;
           color: #111; }
       .demo2__bars_bar:nth-child(6) {
         width: 750px;
@@ -606,13 +601,10 @@
         background-color: #39CCCC; }
         .demo2__bars_bar:nth-child(6):before {
           content: "75%";
-          position: absolute;
-          top: 50%;
-          left: 100%;
-          padding-left: 5px;
-          text-align: left;
-          line-height: 0;
+          margin-right: 5px;
           color: #111;
+          text-align: center;
+          line-height: 100%;
           font-family: "Helvetica", sans-serif;
           font-size: 18px; }
         .demo2__bars_bar:nth-child(6):after {
@@ -623,7 +615,9 @@
           position: absolute;
           top: 50%;
           line-height: 0;
-          right: 5px;
+          left: 100%;
+          width: 100%;
+          margin-left: 5px;
           color: #111; }
 
 /* ==========================================================================

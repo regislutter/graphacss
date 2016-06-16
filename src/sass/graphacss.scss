@@ -296,7 +296,7 @@ $defaultParameters: (
                                         color: yiq-contrast-color(map-get($parameters, graphic-background));
                                     }
                                 } @else {
-                                    margin-#{$orientation-y-opposite}: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units-fonts));
+                                    margin-#{$orientation-y-opposite}: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units));
 
                                     // Text color
                                     @if ($barColorSwitch) {
