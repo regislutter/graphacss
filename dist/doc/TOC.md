@@ -1,14 +1,14 @@
-[Graphacss - when graphics meet SASS](https://github.com/zetura/graphacss)
+[HTML5 Boilerplate homepage](https://html5boilerplate.com)
 
 ## Getting started
 
-* [Usage](usage.md) — Overview of the possibilities.
+* [Usage](usage.md) — Overview of the project contents.
 * [FAQ](faq.md) — Frequently asked questions along with their answers.
 
-## Graphacss framework
+## HTML5 Boilerplate core
 
-* [Configuration](html.md) — Guide to the configure your chart.
-* [Advanced features](css.md) — Guide to the advanced features (multiple charts, etc.).
+* [HTML](html.md) — Guide to the default HTML.
+* [CSS](css.md) — Guide to the default CSS.
 * [JavaScript](js.md) — Guide to the default JavaScript.
 * [Everything else](misc.md).
 

@@ -42,7 +42,7 @@ $labelColorLight: #FFF; // Color used to contrast with dark background (YIQ cont
 
 // Chart sizes
 $graphicWidth: 1200; // Width of the chart
-$graphicHeight: 800; // Height of the chart
+$graphicHeight: 500; // Height of the chart
 $barWidth: 50; // Width of the bars (or height for horizontal graph) if flex not full width
 $barMargin: 10; // Margin between the bars
 
@@ -59,7 +59,7 @@ $backgroundLinesColor: $silver; // Color for the lines in the background
 $showBackgroundLines: true; // <$showBackgroundLines> : [bool] - Show the line inside the entire chart
 
 // Group bars
-$groupBars: 3; // TODO Group the bars (useful for comparator)
+$groupBars: 4; // TODO Group the bars (useful for comparator)
 $groupMargin: 30; // Added to the bar margin
 
 // Bar values displayed
@@ -71,18 +71,21 @@ $valueFontFamily: $defaultFont;
 $valueFontSize: 18;
 $valueLineHeight: 20;
 $valueMarginBar: 5;
+$valueLines: 1;
+$valueHeight: $valueLineHeight*$valueLines+$valueMarginBar*2;
 $valueWidth: 35+$valueMarginBar*2;
 
 // Bar labels
 $displayLabels: true; // <$displayLabels> : [bool]
-$labelPosition: 'right'; // TODO <$labelPosition> : [left | right | top | bottom]
+$labelPosition: 'bottom'; // <$labelPosition> : [top | bottom]
 $labelFontFamily: $defaultFont;
 $labelFontSize: 12;
 $labelLineHeight: 16;
-$labelMarginBar: 5;
+$labelMaxLines: 2;
+$labelHeight: $labelLineHeight*$labelMaxLines;
 
 // Animations
-$animationType: 'height'; // <$animationType> : [fade | [height | width] | none]
+$animationType: 'height'; // <$animationType> : [fade | height | width | none]
 $animationSpeed: 2s; // <$animationSpeed> : [duration]
 $animationSpeedValue: 0; // <$animationSpeedLabel> : [duration] - 0 to disable
 
@@ -196,13 +199,13 @@ $flexPadding: 40;
                     }
                     #{$orientationX}: to-length($nbBar*($barWidth+$barMargin)+$nbGroups*$groupMargin, $units);
                     #{$sizeY}: to-length($value*$pixelByPoint, $units);
-                    @if($animationType == 'height'){
-                        animation: growUp $animationSpeed ease-in-out forwards;
-                    } @else if($animationType == 'width'){
-                        animation: expandLeft $animationSpeed ease-in-out forwards;
-                    } @else if($animationType == 'fade'){
-                        animation: fadeIn $animationSpeed ease-in-out forwards;
-                    }
+                    //@if($animationType == 'height'){
+                    //    animation: growUp $animationSpeed ease-in-out forwards;
+                    //} @else if($animationType == 'width'){
+                    //    animation: expandLeft $animationSpeed ease-in-out forwards;
+                    //} @else if($animationType == 'fade'){
+                    //    animation: fadeIn $animationSpeed ease-in-out forwards;
+                    //}
 
                     $barColorSwitch: false;
                     @if (length($barColors) > 0) {
@@ -218,13 +221,14 @@ $flexPadding: 40;
                             position: absolute;
 
                             @if ($valuePosition == 'outside') {
+                                height: to-length($valueHeight, $unitsFont);
+
                                 @if($graphType == 'horizontal-bars'){
                                     right: to-length(-$valueWidth, $unitsFont);
                                     top: to-length($barWidth/2 - $valueLineHeight/2, $units);
                                     width: to-length($valueWidth, $units);
                                 } @else {
-                                    bottom: 100%;
-                                    padding-bottom: to-length($valueMarginBar, $units);
+                                    top: to-length(-$valueHeight, $unitsFont);
                                     left: to-length(-$barMargin/2, $units);
                                     width: to-length($barWidth+$barMargin, $units);
                                 }
@@ -243,8 +247,7 @@ $flexPadding: 40;
                                     top: to-length($barWidth/2 - $valueLineHeight/2, $units);
                                     width: to-length($valueWidth, $units);
                                 } @else {
-                                    bottom: 100%;
-                                    padding-bottom: to-length($valueMarginBar, $units);
+                                    top: to-length(-$valueHeight, $unitsFont);
                                     width: to-length($barWidth, $units);
                                 }
 
@@ -284,11 +287,12 @@ $flexPadding: 40;
                             content: "#{$label}";
                             position: absolute;
 
+                            height: to-length($labelHeight, $unitsFont);
                             width: to-length($barWidth+$barMargin, $units);
 
                             @if($graphType == 'horizontal-bars'){
                                 left: to-length($valueMarginBar, $unitsFont);
-                                top: to-length($barWidth/2 - $labelLineHeight, $units);
+                                top: to-length($barWidth/2 - $labelLineHeight*$labelMaxLines/2, $units);
 
                                 // Text color
                                 @if ($barColorSwitch) {
@@ -307,7 +311,7 @@ $flexPadding: 40;
                                     }
                                 }
                             } @else {
-                                top: 100%;
+                                bottom: to-length(-$labelHeight, $unitsFont);
                                 left: to-length(-$barMargin/2, $units);
                                 color: $labelColorDefault;
                             }
@@ -389,11 +393,8 @@ $flexPadding: 40;
             &:last-of-type {
                 margin-#{$orientationXopposite}: to-length($flexPadding, $units);
             }
-
             @if($flexGraphFullsize){
                 flex-grow: 1;
-            } @else {
-                flex-shrink: 0;
             }
 
             #{$sizeX}: to-length($barWidth, $units);
@@ -420,17 +421,13 @@ $flexPadding: 40;
                         margin-#{$orientationX}: to-length($groupMargin, $units);
                     }
                     #{$sizeY}: to-length($value*$pixelByPoint, $units);
-
-
-                    @if($animationType == 'height' or $animationType == 'width'){
-                        @if($graphType == 'horizontal-bars'){
-                            animation: expandLeft $animationSpeed ease-in-out forwards;
-                        } @else {
-                            animation: growUp $animationSpeed ease-in-out forwards;
-                        }
-                    } @else if($animationType == 'fade'){
-                        animation: fadeIn $animationSpeed ease-in-out forwards;
-                    }
+                    //@if($animationType == 'height'){
+                    //    animation: growUp $animationSpeed ease-in-out forwards;
+                    //} @else if($animationType == 'width'){
+                    //    animation: expandLeft $animationSpeed ease-in-out forwards;
+                    //} @else if($animationType == 'fade'){
+                    //    animation: fadeIn $animationSpeed ease-in-out forwards;
+                    //}
 
                     $barColorSwitch: false;
                     @if (length($barColors) > 0) {
@@ -442,21 +439,22 @@ $flexPadding: 40;
                     @if ($displayValues) {
                         // Value
                         &:before {
+                            //@if($graphType == 'vertical-bars'){
+                            //    position: absolute;
+                            //}
+
                             content: "#{$valuePrefix+$value+$valueSuffix}";
 
                             @if ($valuePosition == 'outside') {
                                 position: absolute;
 
                                 @if($graphType == 'horizontal-bars'){
-                                    top: 50%;
-                                    left: 100%;
-                                    padding-left: to-length($valueMarginBar, $units);
+                                    right: to-length(-$barWidth*2, $units);
+                                    top: 2px;
                                     text-align: left;
-                                    line-height: 0;
                                 } @else {
                                     width: 100%;
-                                    bottom: 100%;
-                                    padding-bottom: to-length($valueMarginBar, $units);
+                                    top: to-length(-$valueHeight, $unitsFont);
                                     text-align: center;
                                 }
 
@@ -486,7 +484,7 @@ $flexPadding: 40;
                                     }
                                 }
                                 text-align: center;
-                                line-height: 100%;
+                                line-height: to-length($valueLineHeight, $unitsFont);
                             }
 
                             font-family: $valueFontFamily;
@@ -503,26 +501,9 @@ $flexPadding: 40;
                         // Label
                         &:after {
                             content: "#{$label}";
-                            font-family: $labelFontFamily;
-                            font-size: to-length($labelFontSize, $unitsFont);
-                            line-height: to-length($labelLineHeight, $unitsFont);
 
                             @if($graphType == 'horizontal-bars'){
-                                position: absolute;
-                                top: 50%;
-                                line-height: 0;
-
-                                @if($labelPosition == 'right') {
-                                    @if ($valuePosition == 'outside') {
-                                        right: to-length($labelMarginBar, $units);
-                                    } @else {
-                                        left: 100%;
-                                        width: 100%;
-                                        margin-left: to-length($labelMarginBar, $units);
-                                    }
-                                } @else {
-                                    margin-left: to-length($labelMarginBar, $units);
-                                }
+                                margin-left: to-length($valueMarginBar, $unitsFont);
 
                                 // Text color
                                 @if ($barColorSwitch) {
@@ -543,21 +524,15 @@ $flexPadding: 40;
                             } @else {
                                 position: absolute;
                                 width: 100%;
-                                text-align: center;
-
-                                @if($labelPosition == 'top') {
-                                    @if ($valuePosition == 'outside') {
-                                        top: #{to-length($valueMarginBar, $units)};
-                                    } @else {
-                                        bottom: 100%;
-                                        margin-bottom: to-length($valueMarginBar, $units);
-                                    }
-                                } @else {
-                                    top: 100%;
-                                }
-                                margin-top: to-length($labelMarginBar, $units);
+                                height: to-length($labelHeight, $unitsFont);
+                                bottom: to-length(-$labelHeight, $unitsFont);
                                 color: $labelColorDefault;
                             }
+
+                            font-family: $labelFontFamily;
+                            font-size: to-length($labelFontSize, $unitsFont);
+                            line-height: to-length($labelLineHeight, $unitsFont);
+                            text-align: center;
                         }
                     }
                 }
