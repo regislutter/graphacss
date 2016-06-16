@@ -7,3 +7,18 @@
 
 // Framework
 @import 'graphacss';
+
+// DEMO
+$demo1Parameters: $defaultParameters; // Duplicate default parameters
+$demo1Parameters: map-merge($demo1Parameters, (graph-type: 'vertical-bars')); // Override parameter graphic type
+// Initialize values
+$values: (AMD RX480: 24, GTX 1070: 32, GTX 1080: 36, AMD RX4801: 56, GTX 10701: 68, GTX 10801: 75, AMD RX4802: 45, GTX 10702: 72, GTX 10802: 74); // Data
+$barColors: $sunset; // Colors for the bars
+@include graph-generator('demo1', $demo1Parameters, $values, $barColors); // Generate the CSS for the graphic
+
+$demo2Parameters: $defaultParameters;
+$demo2Parameters: map-merge($demo2Parameters, (graph-type: 'horizontal-bars'));
+// Initialize values
+$values: (First: 24, Second: 32, Rocks: 36, Flop: 56, Croc: 68, Top: 75); // Data
+$barColors: $winteriscoming; // Colors for the bars
+@include graph-generator('demo2', $demo2Parameters, $values, $barColors);

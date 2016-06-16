@@ -3,7 +3,7 @@
    ========================================================================== */
 
 // Values for your chart
-$values: (AMD RX480: 24, GTX 1070: 32, GTX 1080: 36, AMD RX4801: 56, GTX 10701: 68, GTX 10801: 75, AMD RX4802: 45, GTX 10702: 72, GTX 10802: 74);
+//$values: (AMD RX480: 24, GTX 1070: 32, GTX 1080: 36, AMD RX4801: 56, GTX 10701: 68, GTX 10801: 75, AMD RX4802: 45, GTX 10702: 72, GTX 10802: 74);
 
 // Color scheme for the bars (repeat automatically)
 $sunset: ($teal, $orange, $yellow);
@@ -11,580 +11,410 @@ $winteriscoming: ($aqua, $silver, $teal);
 $rgb: ($red, $green, $blue);
 $pumpkin: ($teal, $orange, $olive);
 // Color for the bars
-$barColors: $sunset;
+//$barColors: $sunset;
 
 /* ==========================================================================
    Graphacss parameters
    ========================================================================== */
 
-$graphType: 'horizontal-bars'; // TODO [vertical-bars | horizontal-bars | disc | points]
-$flexGraphFullsize: true; // <$flexFullsize> : [bool]
-//$graphType: 'horizontal-bars';
-//$responsive: false; // TODO Responsive chart with flex
-
-// Units used for the elements (char, legend, bars, etc.)
-$units: 'px'; // <$units> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
-// Units used for the fonts
-$unitsFont: 'px';
-
 // Default font families
 $defaultFont: 'Helvetica', sans-serif;
 
-// Colors
-$graphicBackground: #EEE; // Background of the chart
-$barColor: $blue; // Color of the bars
-$valueColorDefault: #FFF; // Default text color for the bar's value (used if you do not set contrast dark and light values)
-$valueColorDark: $black; // Color used to contrast with light background (YIQ contrast)
-$valueColorLight: #FFF; // Color used to contrast with dark background (YIQ contrast)
-$labelColorDefault: $black; // Text color for the bar's label
-$labelColorDark: $black; // Color used to contrast with light background (YIQ contrast)
-$labelColorLight: #FFF; // Color used to contrast with dark background (YIQ contrast)
-
-// Chart sizes
-$graphicWidth: 1200; // Width of the chart
-$graphicHeight: 800; // Height of the chart
-$barWidth: 50; // Width of the bars (or height for horizontal graph) if flex not full width
-$barMargin: 10; // Margin between the bars
-
-// Legend and values
-$valueMin: 0; // Minimum value of the chart
-$valueMax: 120; // Maximum value of the chart
-$legendGap: 10; // Gap between the values in the legend
-$legendPosition: 'left'; // <$legendPosition> : [left | right | top | bottom] - Display the legend on the left or right
-$legendFontFamily: $defaultFont;
-$legendFontSize: 14;
-$legendLineHeight: 16;
-$legendColor: $gray;
-$backgroundLinesColor: $silver; // Color for the lines in the background
-$showBackgroundLines: true; // <$showBackgroundLines> : [bool] - Show the line inside the entire chart
-
-// Group bars
-$groupBars: 3; // TODO Group the bars (useful for comparator)
-$groupMargin: 30; // Added to the bar margin
-
-// Bar values displayed
-$displayValues: true; // <$displayValues> : [bool] - Display values for the bars
-$valuePrefix: '';
-$valueSuffix: '%';
-$valuePosition: 'outside'; // <$valuePosition> : [inside | outside]
-$valueFontFamily: $defaultFont;
-$valueFontSize: 18;
-$valueLineHeight: 20;
-$valueMarginBar: 5;
-$valueWidth: 35+$valueMarginBar*2;
-
-// Bar labels
-$displayLabels: true; // <$displayLabels> : [bool]
-$labelPosition: 'right'; // TODO <$labelPosition> : [left | right | top | bottom]
-$labelFontFamily: $defaultFont;
-$labelFontSize: 12;
-$labelLineHeight: 16;
-$labelMarginBar: 5;
-
-// Animations
-$animationType: 'height'; // <$animationType> : [fade | [height | width] | none]
-$animationSpeed: 2s; // <$animationSpeed> : [duration]
-$animationSpeedValue: 0; // <$animationSpeedLabel> : [duration] - 0 to disable
-
 /* ==========================================================================
-   Graphacss framework
+   Default parameters
    ========================================================================== */
 
-$numberStep: decimal-ceil($valueMax/$legendGap, 0);
+// HOW TO OVERRIDE PARAMETERS
+// $demoParameters: $defaultParameters; // Duplicate the default parameters
+// $demoParameters: map-merge($demo2Parameters, (graph-type: 'horizontal-bars')); // Override the value
 
-// Default vertical bars
-$spaceStep: decimal-ceil($graphicHeight/$numberStep, 0);
-$pixelByPoint: decimal-ceil($graphicHeight/$valueMax, 0);
-$sizeX: 'width';
-$sizeY: 'height';
-$orientationX: 'left';
-$orientationY: 'bottom';
-$orientationXopposite: 'right';
-$orientationYopposite: 'top';
-$legendAxe: 'bottom';
-@if($legendPosition == 'top'){
-    $legendAxe: 'top';
-}
+$defaultParameters: (
+    graph-type: 'horizontal-bars', // <graph-type> : [vertical-bars | horizontal-bars | disc | points]
+    flex-graph: true, // <flex-graph> : [bool] - Does the graphic adapt to it's container
+    // Units used for the elements (char, legend, bars, etc.)
+    units: 'px', // <units> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
+    // Units used for the fonts
+    units-font: 'px', // <units-font> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
+    default-font: $defaultFont,
 
-// Flex variables
-$flexOrientation: 'row';
-$flexJustify: 'flex-start'; // TODO option for flex-start, space-between, space-around, center
-$flexAlign: 'flex-end';
-$flexPadding: 40;
+    graphic-background: #EEE,
+    bar-color: $blue,
+    value-color-default: #FFF,
+    value-color-dark: $black,
+    value-color-light: #FFF,
+    label-color-default: $black,
+    label-color-dark: $black,
+    label-color-light: #FFF,
 
-@if($graphType == 'horizontal-bars') {
-    $spaceStep: decimal-ceil($graphicWidth/$numberStep, 0);
-    $pixelByPoint: decimal-ceil($graphicWidth/$valueMax, 0);
-    $sizeX: 'height';
-    $sizeY: 'width';
-    $orientationX: 'top';
-    $orientationY: 'left';
-    $orientationXopposite: 'bottom';
-    $orientationYopposite: 'right';
-    $legendAxe: 'left';
-    @if($legendPosition == 'right'){
-        $legendAxe: 'right';
-    }
+    graphic-width: 1200,
+    graphic-height: 800,
 
-    // Flex variables
-    $flexOrientation: 'column';
-    $flexJustify: 'flex-start';
-    $flexAlign: 'flex-start';
-}
+    bar-width: 50,
+    bar-margin: 10,
 
-// TODO Multiple charts generator : @function with parameters(className, values, barcolors)
+    value-min: 0,
+    value-max: 120,
 
-.graphacss {
-    position: relative;
-    display: block;
-    background-color: $graphicBackground;
-    width: to-length($graphicWidth, $units);
-    height: to-length($graphicHeight, $units);
+    legend-gap: 10,
+    legend-position: 'left',
+    legend-font-family: $defaultFont,
+    legend-font-size: 14,
+    legend-line-height: 16,
+    legend-color: $gray,
 
-    &__steps {
-        &_step {
-            position: absolute;
-            display: block;
-            #{$legendAxe}: 0;
-            #{$orientationY}: 0;
+    background-lines-color: $silver,
+    show-background-lines: true,
 
-            &:before {
-                font-family: $legendFontFamily;
-                font-size: to-length($legendFontSize, $unitsFont);
-                line-height: to-length($legendLineHeight, $unitsFont);
-                color: $legendColor;
-            }
+    group-bars: 3,
+    group-margin: 30,
 
-            &:nth-child(1):before {
-                content: "#{$valueMin}";
-            }
+    display-values: true,
+    value-prefix: '',
+    value-suffix: '%',
+    value-position: 'outside',
+    value-font-family: $defaultFont,
+    value-font-size: 18,
+    value-line-height: 20,
+    value-margin-bar: 5,
 
-            @for $i from 2 through $numberStep {
-                &:nth-child(#{$i}) {
-                    #{$orientationY}: to-length(($i - 1)*$spaceStep, $units);
-                    @if($showBackgroundLines) {
-                        #{$sizeX}: 100%;
-                    }
+    display-labels: true,
+    label-position: 'right',
+    label-font-family: $defaultFont,
+    label-font-size: 12,
+    label-line-height: 16,
+    label-margin-bar: 5,
 
-                    border-#{$orientationY}: 1px solid $backgroundLinesColor;
+    animation-type: 'height',
+    animation-speed: 2s,
+    animation-speed-value: 0,
 
-                    &:before {
-                        content: "#{($i - 1)*$legendGap}";
-                    }
-                }
-            }
-        }
-    }
+    legend-axe: 'bottom',
 
-    &__bars {
-        &_bar {
-            position: absolute;
-            display: block;
-            #{$orientationY}: 0;
-            #{$sizeX}: to-length($barWidth, $units);
-            @if (length($barColors) == 0) {
-                background-color: $barColor;
-            }
-
-            // Bars
-            $nbBar: 1;
-            @each $label, $value in $values {
-                &:nth-child(#{$nbBar}) {
-                    $nbGroups: 0;
-                    @if($groupBars > 1){
-                        $nbGroups: ($nbBar - 1 - (($nbBar - 1)%$groupBars))/$groupBars; // Number of existing groups
-                    }
-                    #{$orientationX}: to-length($nbBar*($barWidth+$barMargin)+$nbGroups*$groupMargin, $units);
-                    #{$sizeY}: to-length($value*$pixelByPoint, $units);
-                    @if($animationType == 'height'){
-                        animation: growUp $animationSpeed ease-in-out forwards;
-                    } @else if($animationType == 'width'){
-                        animation: expandLeft $animationSpeed ease-in-out forwards;
-                    } @else if($animationType == 'fade'){
-                        animation: fadeIn $animationSpeed ease-in-out forwards;
-                    }
-
-                    $barColorSwitch: false;
-                    @if (length($barColors) > 0) {
-                        $listIndex: (1-$nbBar)%length($barColors);
-                        $barColorSwitch: nth($barColors, $listIndex+1);
-                        background-color: $barColorSwitch;
-                    }
-
-                    @if ($displayValues) {
-                        // Value
-                        &:before {
-                            content: "#{$valuePrefix+$value+$valueSuffix}";
-                            position: absolute;
-
-                            @if ($valuePosition == 'outside') {
-                                @if($graphType == 'horizontal-bars'){
-                                    right: to-length(-$valueWidth, $unitsFont);
-                                    top: to-length($barWidth/2 - $valueLineHeight/2, $units);
-                                    width: to-length($valueWidth, $units);
-                                } @else {
-                                    bottom: 100%;
-                                    padding-bottom: to-length($valueMarginBar, $units);
-                                    left: to-length(-$barMargin/2, $units);
-                                    width: to-length($barWidth+$barMargin, $units);
-                                }
-
-                                // Contrast with chart's background color
-                                @if($valueColorDark and $valueColorLight){
-                                    color: yiq-contrast-color($graphicBackground, $valueColorDark, $valueColorLight);
-                                } @else {
-                                    color: yiq-contrast-color($graphicBackground);
-                                }
-                            } @else {
-                                height: auto;
-
-                                @if($graphType == 'horizontal-bars'){
-                                    right: to-length($valueMarginBar, $unitsFont);
-                                    top: to-length($barWidth/2 - $valueLineHeight/2, $units);
-                                    width: to-length($valueWidth, $units);
-                                } @else {
-                                    bottom: 100%;
-                                    padding-bottom: to-length($valueMarginBar, $units);
-                                    width: to-length($barWidth, $units);
-                                }
-
-                                // Text color
-                                @if ($barColorSwitch) {
-                                    // Contrast with bar's background color
-                                    @if($valueColorDark and $valueColorLight){
-                                        color: yiq-contrast-color($barColorSwitch, $valueColorDark, $valueColorLight);
-                                    } @else {
-                                        color: yiq-contrast-color($barColorSwitch);
-                                    }
-                                } @else {
-                                    // Contrast with bar's background color
-                                    @if($valueColorDark and $valueColorLight){
-                                        color: yiq-contrast-color($barColor, $valueColorDark, $valueColorLight);
-                                    } @else {
-                                        color: $valueColorDefault;
-                                    }
-                                }
-                            }
-
-                            font-family: $valueFontFamily;
-                            font-size: to-length($valueFontSize, $unitsFont);
-                            line-height: to-length($valueLineHeight, $unitsFont);
-                            text-align: center;
-
-                            @if($animationType != 'none' and $animationSpeedValue != 0){
-                                opacity: 0;
-                                animation: fadeIn $animationSpeedValue ease-in-out $animationSpeed forwards;
-                            }
-                        }
-                    }
-
-                    @if ($displayLabels) {
-                        // Label
-                        &:after {
-                            content: "#{$label}";
-                            position: absolute;
-
-                            width: to-length($barWidth+$barMargin, $units);
-
-                            @if($graphType == 'horizontal-bars'){
-                                left: to-length($valueMarginBar, $unitsFont);
-                                top: to-length($barWidth/2 - $labelLineHeight, $units);
-
-                                // Text color
-                                @if ($barColorSwitch) {
-                                    // Contrast with bar's background color
-                                    @if($labelColorDark and $labelColorLight){
-                                        color: yiq-contrast-color($barColorSwitch, $labelColorDark, $labelColorLight);
-                                    } @else {
-                                        color: yiq-contrast-color($barColorSwitch);
-                                    }
-                                } @else {
-                                    // Contrast with bar's background color
-                                    @if($labelColorDark and $labelColorLight){
-                                        color: yiq-contrast-color($barColor, $labelColorDark, $labelColorLight);
-                                    } @else {
-                                        color: $labelColorDefault;
-                                    }
-                                }
-                            } @else {
-                                top: 100%;
-                                left: to-length(-$barMargin/2, $units);
-                                color: $labelColorDefault;
-                            }
-
-                            font-family: $labelFontFamily;
-                            font-size: to-length($labelFontSize, $unitsFont);
-                            line-height: to-length($labelLineHeight, $unitsFont);
-                            text-align: center;
-                        }
-                    }
-                }
-                $nbBar: $nbBar+1;
-            }
-        }
-    }
-}
-
-.graphacss-flex {
-    position: relative;
-    display: block;
-    background-color: $graphicBackground;
-    width: to-length($graphicWidth, $units);
-    height: to-length($graphicHeight, $units);
-
-    &__steps {
-        &_step {
-            position: absolute;
-            display: block;
-            #{$legendAxe}: 0;
-            #{$orientationY}: 0;
-
-            &:before {
-                font-family: $legendFontFamily;
-                font-size: to-length($legendFontSize, $unitsFont);
-                line-height: to-length($legendLineHeight, $unitsFont);
-                color: $legendColor;
-            }
-
-            &:nth-child(1):before {
-                content: "#{$valueMin}";
-            }
-
-            @for $i from 2 through $numberStep {
-                &:nth-child(#{$i}) {
-                    #{$orientationY}: to-length(($i - 1)*$spaceStep, $units);
-                    @if($showBackgroundLines) {
-                        #{$sizeX}: 100%;
-                    }
-
-                    border-#{$orientationY}: 1px solid $backgroundLinesColor;
-
-                    &:before {
-                        content: "#{($i - 1)*$legendGap}";
-                    }
-                }
-            }
-        }
-    }
-
-    &__bars {
-        display: flex;
-        //flex-flow: #{$flexOrientation+' nowrap'};
-        flex-direction: #{$flexOrientation};
-        flex-wrap: nowrap;
-        justify-content: #{$flexJustify};
-        align-items: #{$flexAlign};
-        width: 100%;
-        height: 100%;
-
-        &_bar {
-            display: flex;
-            position: relative;
-            align-items: center;
-
-            margin-#{$orientationXopposite}: to-length($barMargin, $units);
-            &:first-of-type {
-                margin-#{$orientationX}: to-length($flexPadding, $units);
-            }
-            &:last-of-type {
-                margin-#{$orientationXopposite}: to-length($flexPadding, $units);
-            }
-
-            @if($flexGraphFullsize){
-                flex-grow: 1;
-            } @else {
-                flex-shrink: 0;
-            }
-
-            #{$sizeX}: to-length($barWidth, $units);
-            @if (length($barColors) == 0) {
-                background-color: $barColor;
-            }
-
-            @if($graphType == 'horizontal-bars'){
-                flex-direction: row-reverse;
-                @if($valuePosition == 'inside'){
-                    justify-content: space-between;
-                } @else {
-                    justify-content: flex-end;
-                }
-            } @else {
-                flex-direction: column;
-            }
-
-            // Bars
-            $nbBar: 1;
-            @each $label, $value in $values {
-                &:nth-child(#{$nbBar}) {
-                    @if($nbBar != 1 and ($nbBar - 1)%$groupBars == 0){
-                        margin-#{$orientationX}: to-length($groupMargin, $units);
-                    }
-                    #{$sizeY}: to-length($value*$pixelByPoint, $units);
+    flex-orientation: 'row',
+    flex-justify: 'flex-start', // TODO option for flex-start, space-between, space-around, center
+    flex-align: 'flex-end',
+    flex-padding: 20
+);
 
 
-                    @if($animationType == 'height' or $animationType == 'width'){
-                        @if($graphType == 'horizontal-bars'){
-                            animation: expandLeft $animationSpeed ease-in-out forwards;
-                        } @else {
-                            animation: growUp $animationSpeed ease-in-out forwards;
-                        }
-                    } @else if($animationType == 'fade'){
-                        animation: fadeIn $animationSpeed ease-in-out forwards;
-                    }
-
-                    $barColorSwitch: false;
-                    @if (length($barColors) > 0) {
-                        $listIndex: (1-$nbBar)%length($barColors);
-                        $barColorSwitch: nth($barColors, $listIndex+1);
-                        background-color: $barColorSwitch;
-                    }
-
-                    @if ($displayValues) {
-                        // Value
-                        &:before {
-                            content: "#{$valuePrefix+$value+$valueSuffix}";
-
-                            @if ($valuePosition == 'outside') {
-                                position: absolute;
-
-                                @if($graphType == 'horizontal-bars'){
-                                    top: 50%;
-                                    left: 100%;
-                                    padding-left: to-length($valueMarginBar, $units);
-                                    text-align: left;
-                                    line-height: 0;
-                                } @else {
-                                    width: 100%;
-                                    bottom: 100%;
-                                    padding-bottom: to-length($valueMarginBar, $units);
-                                    text-align: center;
-                                }
-
-                                // Contrast with chart's background color
-                                @if($valueColorDark and $valueColorLight){
-                                    color: yiq-contrast-color($graphicBackground, $valueColorDark, $valueColorLight);
-                                } @else {
-                                    color: yiq-contrast-color($graphicBackground);
-                                }
-                            } @else {
-                                margin-#{$orientationYopposite}: to-length($valueMarginBar, $unitsFont);
-
-                                // Text color
-                                @if ($barColorSwitch) {
-                                    // Contrast with bar's background color
-                                    @if($valueColorDark and $valueColorLight){
-                                        color: yiq-contrast-color($barColorSwitch, $valueColorDark, $valueColorLight);
-                                    } @else {
-                                        color: yiq-contrast-color($barColorSwitch);
-                                    }
-                                } @else {
-                                    // Contrast with bar's background color
-                                    @if($valueColorDark and $valueColorLight){
-                                        color: yiq-contrast-color($barColor, $valueColorDark, $valueColorLight);
-                                    } @else {
-                                        color: $valueColorDefault;
-                                    }
-                                }
-                                text-align: center;
-                                line-height: 100%;
-                            }
-
-                            font-family: $valueFontFamily;
-                            font-size: to-length($valueFontSize, $unitsFont);
-
-                            @if($animationType != 'none' and $animationSpeedValue != 0){
-                                opacity: 0;
-                                animation: fadeIn $animationSpeedValue ease-in-out $animationSpeed forwards;
-                            }
-                        }
-                    }
-
-                    @if ($displayLabels) {
-                        // Label
-                        &:after {
-                            content: "#{$label}";
-                            font-family: $labelFontFamily;
-                            font-size: to-length($labelFontSize, $unitsFont);
-                            line-height: to-length($labelLineHeight, $unitsFont);
-
-                            @if($graphType == 'horizontal-bars'){
-                                position: absolute;
-                                top: 50%;
-                                line-height: 0;
-
-                                @if($labelPosition == 'right') {
-                                    @if ($valuePosition == 'outside') {
-                                        right: to-length($labelMarginBar, $units);
-                                    } @else {
-                                        left: 100%;
-                                        width: 100%;
-                                        margin-left: to-length($labelMarginBar, $units);
-                                    }
-                                } @else {
-                                    margin-left: to-length($labelMarginBar, $units);
-                                }
-
-                                // Text color
-                                @if ($barColorSwitch) {
-                                    // Contrast with bar's background color
-                                    @if($labelColorDark and $labelColorLight){
-                                        color: yiq-contrast-color($barColorSwitch, $labelColorDark, $labelColorLight);
-                                    } @else {
-                                        color: yiq-contrast-color($barColorSwitch);
-                                    }
-                                } @else {
-                                    // Contrast with bar's background color
-                                    @if($labelColorDark and $labelColorLight){
-                                        color: yiq-contrast-color($barColor, $labelColorDark, $labelColorLight);
-                                    } @else {
-                                        color: $labelColorDefault;
-                                    }
-                                }
-                            } @else {
-                                position: absolute;
-                                width: 100%;
-                                text-align: center;
-
-                                @if($labelPosition == 'top') {
-                                    @if ($valuePosition == 'outside') {
-                                        top: #{to-length($valueMarginBar, $units)};
-                                    } @else {
-                                        bottom: 100%;
-                                        margin-bottom: to-length($valueMarginBar, $units);
-                                    }
-                                } @else {
-                                    top: 100%;
-                                }
-                                margin-top: to-length($labelMarginBar, $units);
-                                color: $labelColorDefault;
-                            }
-                        }
-                    }
-                }
-                $nbBar: $nbBar+1;
-            }
-        }
-    }
-}
 
 /* ==========================================================================
+   Graphacss Framework - Mixin to generate multiple graph CSS
+   ========================================================================== */
+
+@mixin graph-generator($className, $parameters, $values, $barcolors){
+    // Dynamic variables
+    $number-step: decimal-ceil(map-get($parameters, value-max)/map-get($parameters, legend-gap), 0);
+
+    // Default vertical bars
+    $space-step: decimal-ceil(map-get($parameters, graphic-height)/$number-step, 0);
+    $pixel-by-point: decimal-ceil(map-get($parameters, graphic-height)/map-get($parameters, value-max), 0);
+
+    $legend-axe: map-get($parameters, legend-axe);
+    @if(map-get($parameters, legend-position) == 'top'){
+        $legend-axe: 'top';
+    }
+
+    // Initiatize flex option and orientation
+    $size-x: 'width';
+    $size-y: 'height';
+    $orientation-x: 'left';
+    $orientation-y: 'bottom';
+    $orientation-x-opposite: 'right';
+    $orientation-y-opposite: 'top';
+    $legend-axe: map-get($parameters, legend-axe);
+
+    // Flex variables
+    $flex-orientation: map-get($parameters, flex-orientation);
+    $flex-justify: map-get($parameters, flex-justify);
+    $flex-align: map-get($parameters, flex-align);
+
+    // Modify values for horizontal orientation
+    @if(map-get($parameters, graph-type) == 'horizontal-bars') {
+        $space-step: decimal-ceil(map-get($parameters, graphic-width)/$number-step, 0);
+        $pixel-by-point: decimal-ceil(map-get($parameters, graphic-width)/map-get($parameters, value-max), 0);
+        $size-x: 'height';
+        $size-y: 'width';
+        $orientation-x: 'top';
+        $orientation-y: 'left';
+        $orientation-x-opposite: 'bottom';
+        $orientation-y-opposite: 'right';
+        $legend-axe: 'left';
+        @if(map-get($parameters, legend-position) == 'right'){
+            $legend-axe: 'right';
+        }
+
+        // Flex variables
+        $flex-orientation: 'column';
+        $flex-justify: 'flex-start';
+        $flex-align: 'flex-start';
+    }
+
+    .#{$className} {
+        position: relative;
+        display: block;
+        background-color: map-get($parameters, graphic-background);
+        width: to-length(map-get($parameters, graphic-width), map-get($parameters, units));
+        height: to-length(map-get($parameters, graphic-height), map-get($parameters, units));
+        padding-#{$orientation-x}: to-length(map-get($parameters, flex-padding), map-get($parameters, units));
+        padding-#{$orientation-x-opposite}: to-length(map-get($parameters, flex-padding), map-get($parameters, units));
+
+        &__steps {
+            &_step {
+                position: absolute;
+                display: block;
+                #{$legend-axe}: 0;
+                #{$orientation-x}: 0;
+                #{$orientation-y}: 0;
+
+                &:before {
+                    font-family: map-get($parameters, legend-font-family);
+                    font-size: to-length(map-get($parameters, legend-font-size), map-get($parameters, units-font));
+                    line-height: to-length(map-get($parameters, legend-line-height), map-get($parameters, units-font));
+                    color: map-get($parameters, legend-color);
+                }
+
+                &:nth-child(1):before {
+                    content: "#{map-get($parameters, value-min)}";
+                }
+
+                @for $i from 2 through $number-step {
+                    &:nth-child(#{$i}) {
+                        #{$orientation-y}: to-length(($i - 1)*$space-step, map-get($parameters, units));
+                        @if(map-get($parameters, show-background-lines)) {
+                            #{$size-x}: 100%;
+                        }
+
+                        border-#{$orientation-y}: 1px solid map-get($parameters, background-lines-color);
+
+                        &:before {
+                            content: "#{($i - 1)*map-get($parameters, legend-gap)}";
+                        }
+                    }
+                }
+            }
+        }
+
+        &__bars {
+            display: flex;
+
+            //flex-flow: #{$flexOrientation+' nowrap'};
+            flex-direction: #{$flex-orientation};
+            flex-wrap: nowrap;
+            justify-content: #{$flex-justify};
+            align-items: #{$flex-align};
+            width: 100%;
+            height: 100%;
+
+            &_bar {
+                display: flex;
+                position: relative;
+                align-items: center;
+
+                margin-#{$orientation-x-opposite}: to-length(map-get($parameters, bar-margin), map-get($parameters, units));
+                &:first-of-type {
+                    margin-#{$orientation-x}: to-length(map-get($parameters, bar-margin), map-get($parameters, units));
+                }
+                &:last-of-type {
+                    margin-#{$orientation-x-opposite}: to-length(map-get($parameters, bar-margin), map-get($parameters, units));
+                }
+
+                @if(map-get($parameters, flex-graph)){
+                    flex-grow: 1;
+                } @else {
+                    flex-shrink: 0;
+                }
+
+                #{$size-x}: to-length(map-get($parameters, bar-width), map-get($parameters, units));
+                @if (length($barColors) == 0) {
+                    background-color: map-get($parameters, bar-color);
+                }
+
+                @if(map-get($parameters, graph-type) == 'horizontal-bars'){
+                    flex-direction: row-reverse;
+                    @if(map-get($parameters, value-position) == 'inside'){
+                        justify-content: space-between;
+                    } @else {
+                        justify-content: flex-end;
+                    }
+                } @else {
+                    flex-direction: column;
+                }
+
+                // Bars
+                $nbBar: 1;
+                @each $label, $value in $values {
+                    &:nth-child(#{$nbBar}) {
+                        @if($nbBar != 1 and ($nbBar - 1)%map-get($parameters, group-bars) == 0){
+                            margin-#{$orientation-x}: to-length(map-get($parameters, group-margin), map-get($parameters, units));
+                        }
+                        #{$size-y}: to-length($value*$pixel-by-point, map-get($parameters, units));
+
+
+                        @if(map-get($parameters, animation-type) == 'height' or map-get($parameters, animation-type) == 'width'){
+                            @if(map-get($parameters, graph-type) == 'horizontal-bars'){
+                                animation: #{$className}-expandLeft map-get($parameters, animation-speed) ease-in-out forwards;
+                            } @else {
+                                animation: #{$className}-growUp map-get($parameters, animation-speed) ease-in-out forwards;
+                            }
+                        } @else if(map-get($parameters, animation-type) == 'fade'){
+                            animation: #{$className}-fadeIn map-get($parameters, animation-speed) ease-in-out forwards;
+                        }
+
+                        $barColorSwitch: false;
+                        @if (length($barColors) > 0) {
+                            $listIndex: (1-$nbBar)%length($barColors);
+                            $barColorSwitch: nth($barColors, $listIndex+1);
+                            background-color: $barColorSwitch;
+                        }
+
+                        @if (map-get($parameters, display-values)) {
+                            // Value
+                            &:before {
+                                content: "#{map-get($parameters, value-prefix)+$value+map-get($parameters, value-suffix)}";
+
+                                @if (map-get($parameters, value-position) == 'outside') {
+                                    position: absolute;
+
+                                    @if(map-get($parameters, graph-type) == 'horizontal-bars'){
+                                        top: 50%;
+                                        left: 100%;
+                                        padding-left: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units));
+                                        text-align: left;
+                                        line-height: 0;
+                                    } @else {
+                                        width: 100%;
+                                        bottom: 100%;
+                                        padding-bottom: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units));
+                                        text-align: center;
+                                    }
+
+                                    // Contrast with chart's background color
+                                    @if(map-get($parameters, value-color-dark) and map-get($parameters, value-color-light)){
+                                        color: yiq-contrast-color(map-get($parameters, graphic-background), map-get($parameters, value-color-dark), map-get($parameters, value-color-light));
+                                    } @else {
+                                        color: yiq-contrast-color(map-get($parameters, graphic-background));
+                                    }
+                                } @else {
+                                    margin-#{$orientation-y-opposite}: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units-fonts));
+
+                                    // Text color
+                                    @if ($barColorSwitch) {
+                                        // Contrast with bar's background color
+                                        @if(map-get($parameters, value-color-dark) and map-get($parameters, value-color-light)){
+                                            color: yiq-contrast-color($barColorSwitch, map-get($parameters, value-color-dark), map-get($parameters, value-color-light));
+                                        } @else {
+                                            color: yiq-contrast-color($barColorSwitch);
+                                        }
+                                    } @else {
+                                        // Contrast with bar's background color
+                                        @if(map-get($parameters, value-color-dark) and map-get($parameters, value-color-light)){
+                                            color: yiq-contrast-color(map-get($parameters, bar-color), map-get($parameters, value-color-dark), map-get($parameters, value-color-light));
+                                        } @else {
+                                            color: map-get($parameters, value-color-default);
+                                        }
+                                    }
+                                    text-align: center;
+                                    line-height: 100%;
+                                }
+
+                                font-family: map-get($parameters, value-font-family);
+                                font-size: to-length(map-get($parameters, value-font-size), map-get($parameters, units-font));
+
+                                @if(map-get($parameters, animation-type) != 'none' and map-get($parameters, animation-speed-value) != 0){
+                                    opacity: 0;
+                                    animation: #{$className}-fadeIn map-get($parameters, animation-speed-value) ease-in-out map-get($parameters, animation-speed) forwards;
+                                }
+                            }
+                        }
+
+                        @if (map-get($parameters, display-labels)) {
+                            // Label
+                            &:after {
+                                content: "#{$label}";
+                                font-family: map-get($parameters, label-font-family);
+                                font-size: to-length(map-get($parameters, label-font-size), map-get($parameters, units-font));
+                                line-height: to-length(map-get($parameters, label-line-height), map-get($parameters, units-font));
+
+                                @if(map-get($parameters, graph-type) == 'horizontal-bars'){
+                                    position: absolute;
+                                    top: 50%;
+                                    line-height: 0;
+
+                                    @if(map-get($parameters, label-position) == 'right') {
+                                        @if (map-get($parameters, value-position) == 'outside') {
+                                            right: to-length(map-get($parameters, label-margin-bar), map-get($parameters, units));
+                                        } @else {
+                                            left: 100%;
+                                            width: 100%;
+                                            margin-left: to-length(map-get($parameters, label-margin-bar), map-get($parameters, units));
+                                        }
+                                    } @else {
+                                        margin-left: to-length(map-get($parameters, label-margin-bar), map-get($parameters, units));
+                                    }
+
+                                    // Text color
+                                    @if ($barColorSwitch) {
+                                        // Contrast with bar's background color
+                                        @if(map-get($parameters, label-color-dark) and map-get($parameters, label-color-light)){
+                                            color: yiq-contrast-color($barColorSwitch, map-get($parameters, label-color-dark), map-get($parameters, label-color-light));
+                                        } @else {
+                                            color: yiq-contrast-color($barColorSwitch);
+                                        }
+                                    } @else {
+                                        // Contrast with bar's background color
+                                        @if(map-get($parameters, label-color-dark) and map-get($parameters, label-color-light)){
+                                            color: yiq-contrast-color($barColor, map-get($parameters, label-color-dark), map-get($parameters, label-color-light));
+                                        } @else {
+                                            color: map-get($parameters, label-color-default);
+                                        }
+                                    }
+                                } @else {
+                                    position: absolute;
+                                    width: 100%;
+                                    text-align: center;
+
+                                    @if(map-get($parameters, label-position) == 'top') {
+                                        @if (map-get($parameters, value-position) == 'outside') {
+                                            top: #{to-length(map-get($parameters, label-margin-bar), map-get($parameters, units))};
+                                        } @else {
+                                            bottom: 100%;
+                                            margin-bottom: to-length(map-get($parameters, label-margin-bar), map-get($parameters, units));
+                                        }
+                                    } @else {
+                                        top: 100%;
+                                    }
+                                    margin-top: to-length(map-get($parameters, label-margin-bar), map-get($parameters, units));
+                                    color: map-get($parameters, label-color-default);
+                                }
+                            }
+                        }
+                    }
+                    $nbBar: $nbBar+1;
+                }
+            }
+        }
+    }
+
+   /* ==========================================================================
    Graphacss animations
    ========================================================================== */
 
-// Fade
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+    // Fade
+    @keyframes #{$className}-fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 
-// Height
-@keyframes growUp {
-    from { max-height: 0; }
-    to { max-height: to-length($graphicHeight, $units); }
-}
+    // Height
+    @keyframes #{$className}-growUp {
+        from { max-height: 0; }
+        to { max-height: to-length(map-get($parameters, graphic-height), map-get($parameters, units)); }
+    }
 
-// Width
-@keyframes expandLeft {
-    from { max-width: 0; }
-    to { max-width: to-length($graphicWidth, $units); }
+    // Width
+    @keyframes #{$className}-expandLeft {
+        from { max-width: 0; }
+        to { max-width: to-length(map-get($parameters, graphic-width), map-get($parameters, units)); }
+    }
 }
