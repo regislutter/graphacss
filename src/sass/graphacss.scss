@@ -10,6 +10,7 @@ $sunset: ($teal, $orange, $yellow);
 $winteriscoming: ($aqua, $silver, $teal);
 $rgb: ($red, $green, $blue);
 $pumpkin: ($teal, $orange, $olive);
+$thematrix: (#0CCD58, #DFEFE2, #0B6A26);
 // Color for the bars
 //$barColors: $sunset;
 
@@ -29,7 +30,7 @@ $defaultFont: 'Helvetica', sans-serif;
 // $demoParameters: map-merge($demo2Parameters, (graph-type: 'horizontal-bars')); // Override the value
 
 $defaultParameters: (
-    graph-type: 'horizontal-bars', // <graph-type> : [vertical-bars | horizontal-bars | disc | points]
+    graph-type: 'vertical-bars', // <graph-type> : [vertical-bars | horizontal-bars | disc | points]
     flex-graph: true, // <flex-graph> : [bool] - Does the graphic adapt to it's container
     // Units used for the elements (char, legend, bars, etc.)
     units: 'px', // <units> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
@@ -354,17 +355,25 @@ $defaultParameters: (
                                     }
 
                                     // Text color
-                                    @if ($barColorSwitch) {
-                                        // Contrast with bar's background color
-                                        @if(map-get($parameters, label-color-dark) and map-get($parameters, label-color-light)){
-                                            color: yiq-contrast-color($barColorSwitch, map-get($parameters, label-color-dark), map-get($parameters, label-color-light));
+                                    @if (map-get($parameters, value-position) == 'outside') {
+                                        @if ($barColorSwitch) {
+                                            // Contrast with bar's background color
+                                            @if(map-get($parameters, label-color-dark) and map-get($parameters, label-color-light)){
+                                                color: yiq-contrast-color($barColorSwitch, map-get($parameters, label-color-dark), map-get($parameters, label-color-light));
+                                            } @else {
+                                                color: yiq-contrast-color($barColorSwitch);
+                                            }
                                         } @else {
-                                            color: yiq-contrast-color($barColorSwitch);
+                                            // Contrast with bar's background color
+                                            @if(map-get($parameters, label-color-dark) and map-get($parameters, label-color-light)){
+                                                color: yiq-contrast-color($barColor, map-get($parameters, label-color-dark), map-get($parameters, label-color-light));
+                                            } @else {
+                                                color: map-get($parameters, label-color-default);
+                                            }
                                         }
                                     } @else {
-                                        // Contrast with bar's background color
                                         @if(map-get($parameters, label-color-dark) and map-get($parameters, label-color-light)){
-                                            color: yiq-contrast-color($barColor, map-get($parameters, label-color-dark), map-get($parameters, label-color-light));
+                                            color: yiq-contrast-color(map-get($parameters, graphic-background), map-get($parameters, label-color-dark), map-get($parameters, label-color-light));
                                         } @else {
                                             color: map-get($parameters, label-color-default);
                                         }
