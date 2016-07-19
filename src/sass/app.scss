@@ -9,6 +9,28 @@
 @import 'graphacss';
 
 // Initialize values
+$values: (SBP1: 22.0, SBP2: 16.3, SBP3: 16.0, SBP4: 14.2, DBP1: 13.6, DBP2: 9.7, DBP3: 10.3, DBP4: 9.3); // Data
+$barColors: (#D4451D, #918F90, #CFCECE, #E5E4E4); // Colors for the bars
+$redInvertParams: $defaultParameters; // Duplicate default parameters
+$redInvertParams: map-merge($redInvertParams, (graphic-background: #FFF));
+$redInvertParams: map-merge($redInvertParams, (flex-graph: false));
+$redInvertParams: map-merge($redInvertParams, (graphic-width: 630));
+$redInvertParams: map-merge($redInvertParams, (graphic-height: 330));
+$redInvertParams: map-merge($redInvertParams, (bar-width: 30));
+$redInvertParams: map-merge($redInvertParams, (bar-margin: 20));
+$redInvertParams: map-merge($redInvertParams, (value-color-bar: true));
+$redInvertParams: map-merge($redInvertParams, (value-max: 25));
+$redInvertParams: map-merge($redInvertParams, (background-lines-color: #DADADA));
+$redInvertParams: map-merge($redInvertParams, (show-first-line: true));
+$redInvertParams: map-merge($redInvertParams, (legend-gap: 5));
+$redInvertParams: map-merge($redInvertParams, (group-bars: 4));
+$redInvertParams: map-merge($redInvertParams, (group-margin: 60));
+$redInvertParams: map-merge($redInvertParams, (value-prefix: '-'));
+$redInvertParams: map-merge($redInvertParams, (value-suffix: ''));
+$redInvertParams: map-merge($redInvertParams, (display-labels: false));
+@include graph-generator('redinvert', $redInvertParams, $values, $barColors); // Generate the CSS for the graphic
+
+// SUNSET demo
 $values: (AMD RX480: 24, GTX 1070: 32, GTX 1080: 36, AMD RX4801: 56, GTX 10701: 68, GTX 10801: 75, AMD RX4802: 45, GTX 10702: 72, GTX 10802: 74); // Data
 $barColors: $sunset; // Colors for the bars
 @include graph-generator('demo1', $defaultParameters, $values, $barColors); // Generate the CSS for the graphic

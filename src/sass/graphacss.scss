@@ -31,6 +31,7 @@ $defaultFont: 'Helvetica', sans-serif;
 
 $defaultParameters: (
     graph-type: 'vertical-bars', // <graph-type> : [vertical-bars | horizontal-bars | disc | points]
+    graph-invert: false, // TODO Invert the graphic : Vertical bars from top or horizontal bars from right
     flex-graph: true, // <flex-graph> : [bool] - Does the graphic adapt to it's container
     // Units used for the elements (char, legend, bars, etc.)
     units: 'px', // <units> : [px | cm | mm | % | ch | pc | in | em | rem | pt | ex | vw | vh]
@@ -43,6 +44,7 @@ $defaultParameters: (
     value-color-default: #FFF,
     value-color-dark: $black,
     value-color-light: #FFF,
+    value-color-bar: false, // Value will have the same color as the bar (use only for outside value)
     label-color-default: $black,
     label-color-dark: $black,
     label-color-light: #FFF,
@@ -65,6 +67,7 @@ $defaultParameters: (
 
     background-lines-color: $silver,
     show-background-lines: true,
+    show-first-line: false,
 
     group-bars: 3,
     group-margin: 30,
@@ -179,7 +182,11 @@ $defaultParameters: (
                     content: "#{map-get($parameters, value-min)}";
                 }
 
-                @for $i from 2 through $number-step {
+                $firstLineShow: 2;
+                @if(map-get($parameters, show-first-line)){
+                    $firstLineShow: 1;
+                }
+                @for $i from $firstLineShow through $number-step {
                     &:nth-child(#{$i}) {
                         #{$orientation-y}: to-length(($i - 1)*$space-step, map-get($parameters, units));
                         @if(map-get($parameters, show-background-lines)) {
@@ -291,7 +298,13 @@ $defaultParameters: (
                                     }
 
                                     // Contrast with chart's background color
-                                    @if(map-get($parameters, value-color-dark) and map-get($parameters, value-color-light)){
+                                    @if(map-get($parameters, value-color-bar)){
+                                        @if ($barColorSwitch) {
+                                            color: $barColorSwitch;
+                                        } @else {
+                                            color: map-get($parameters, bar-color);
+                                        }
+                                    } @else if (map-get($parameters, value-color-dark) and map-get($parameters, value-color-light)) {
                                         color: yiq-contrast-color(map-get($parameters, graphic-background), map-get($parameters, value-color-dark), map-get($parameters, value-color-light));
                                     } @else {
                                         color: yiq-contrast-color(map-get($parameters, graphic-background));

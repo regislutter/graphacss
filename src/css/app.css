@@ -10,6 +10,212 @@
 /* ==========================================================================
    Graphacss Framework - Mixin to generate multiple graph CSS
    ========================================================================== */
+.redinvert {
+  position: relative;
+  display: block;
+  background-color: #FFF;
+  width: 630px;
+  height: 330px;
+  padding-left: 20px;
+  padding-right: 20px; }
+  .redinvert__steps_step {
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    bottom: 0; }
+    .redinvert__steps_step:before {
+      font-family: "Helvetica", sans-serif;
+      font-size: 14px;
+      line-height: 16px;
+      color: #AAA; }
+    .redinvert__steps_step:nth-child(1):before {
+      content: "0"; }
+    .redinvert__steps_step:nth-child(1) {
+      bottom: 0px;
+      width: 100%;
+      border-bottom: 1px solid #DADADA; }
+      .redinvert__steps_step:nth-child(1):before {
+        content: "0"; }
+    .redinvert__steps_step:nth-child(2) {
+      bottom: 66px;
+      width: 100%;
+      border-bottom: 1px solid #DADADA; }
+      .redinvert__steps_step:nth-child(2):before {
+        content: "5"; }
+    .redinvert__steps_step:nth-child(3) {
+      bottom: 132px;
+      width: 100%;
+      border-bottom: 1px solid #DADADA; }
+      .redinvert__steps_step:nth-child(3):before {
+        content: "10"; }
+    .redinvert__steps_step:nth-child(4) {
+      bottom: 198px;
+      width: 100%;
+      border-bottom: 1px solid #DADADA; }
+      .redinvert__steps_step:nth-child(4):before {
+        content: "15"; }
+    .redinvert__steps_step:nth-child(5) {
+      bottom: 264px;
+      width: 100%;
+      border-bottom: 1px solid #DADADA; }
+      .redinvert__steps_step:nth-child(5):before {
+        content: "20"; }
+  .redinvert__bars {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%; }
+    .redinvert__bars_bar {
+      display: flex;
+      position: relative;
+      align-items: center;
+      margin-right: 20px;
+      flex-shrink: 0;
+      width: 30px;
+      flex-direction: column; }
+      .redinvert__bars_bar:first-of-type {
+        margin-left: 20px; }
+      .redinvert__bars_bar:last-of-type {
+        margin-right: 20px; }
+      .redinvert__bars_bar:nth-child(1) {
+        height: 290.4px;
+        animation: redinvert-growUp 2s ease-in-out forwards;
+        background-color: #D4451D; }
+        .redinvert__bars_bar:nth-child(1):before {
+          content: "-22";
+          position: absolute;
+          width: 100%;
+          bottom: 100%;
+          padding-bottom: 5px;
+          text-align: center;
+          color: #D4451D;
+          font-family: "Helvetica", sans-serif;
+          font-size: 18px; }
+      .redinvert__bars_bar:nth-child(2) {
+        height: 215.16px;
+        animation: redinvert-growUp 2s ease-in-out forwards;
+        background-color: #918F90; }
+        .redinvert__bars_bar:nth-child(2):before {
+          content: "-16.3";
+          position: absolute;
+          width: 100%;
+          bottom: 100%;
+          padding-bottom: 5px;
+          text-align: center;
+          color: #918F90;
+          font-family: "Helvetica", sans-serif;
+          font-size: 18px; }
+      .redinvert__bars_bar:nth-child(3) {
+        height: 211.2px;
+        animation: redinvert-growUp 2s ease-in-out forwards;
+        background-color: #CFCECE; }
+        .redinvert__bars_bar:nth-child(3):before {
+          content: "-16";
+          position: absolute;
+          width: 100%;
+          bottom: 100%;
+          padding-bottom: 5px;
+          text-align: center;
+          color: #CFCECE;
+          font-family: "Helvetica", sans-serif;
+          font-size: 18px; }
+      .redinvert__bars_bar:nth-child(4) {
+        height: 187.44px;
+        animation: redinvert-growUp 2s ease-in-out forwards;
+        background-color: #E5E4E4; }
+        .redinvert__bars_bar:nth-child(4):before {
+          content: "-14.2";
+          position: absolute;
+          width: 100%;
+          bottom: 100%;
+          padding-bottom: 5px;
+          text-align: center;
+          color: #E5E4E4;
+          font-family: "Helvetica", sans-serif;
+          font-size: 18px; }
+      .redinvert__bars_bar:nth-child(5) {
+        margin-left: 60px;
+        height: 179.52px;
+        animation: redinvert-growUp 2s ease-in-out forwards;
+        background-color: #D4451D; }
+        .redinvert__bars_bar:nth-child(5):before {
+          content: "-13.6";
+          position: absolute;
+          width: 100%;
+          bottom: 100%;
+          padding-bottom: 5px;
+          text-align: center;
+          color: #D4451D;
+          font-family: "Helvetica", sans-serif;
+          font-size: 18px; }
+      .redinvert__bars_bar:nth-child(6) {
+        height: 128.04px;
+        animation: redinvert-growUp 2s ease-in-out forwards;
+        background-color: #918F90; }
+        .redinvert__bars_bar:nth-child(6):before {
+          content: "-9.7";
+          position: absolute;
+          width: 100%;
+          bottom: 100%;
+          padding-bottom: 5px;
+          text-align: center;
+          color: #918F90;
+          font-family: "Helvetica", sans-serif;
+          font-size: 18px; }
+      .redinvert__bars_bar:nth-child(7) {
+        height: 135.96px;
+        animation: redinvert-growUp 2s ease-in-out forwards;
+        background-color: #CFCECE; }
+        .redinvert__bars_bar:nth-child(7):before {
+          content: "-10.3";
+          position: absolute;
+          width: 100%;
+          bottom: 100%;
+          padding-bottom: 5px;
+          text-align: center;
+          color: #CFCECE;
+          font-family: "Helvetica", sans-serif;
+          font-size: 18px; }
+      .redinvert__bars_bar:nth-child(8) {
+        height: 122.76px;
+        animation: redinvert-growUp 2s ease-in-out forwards;
+        background-color: #E5E4E4; }
+        .redinvert__bars_bar:nth-child(8):before {
+          content: "-9.3";
+          position: absolute;
+          width: 100%;
+          bottom: 100%;
+          padding-bottom: 5px;
+          text-align: center;
+          color: #E5E4E4;
+          font-family: "Helvetica", sans-serif;
+          font-size: 18px; }
+
+/* ==========================================================================
+   Graphacss animations
+   ========================================================================== */
+@keyframes redinvert-fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes redinvert-growUp {
+  from {
+    max-height: 0; }
+  to {
+    max-height: 330px; } }
+
+@keyframes redinvert-expandLeft {
+  from {
+    max-width: 0; }
+  to {
+    max-width: 630px; } }
+
 .demo1 {
   position: relative;
   display: block;
