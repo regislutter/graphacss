@@ -126,12 +126,21 @@ $defaultParameters: (
     $orientation-y: 'bottom';
     $orientation-x-opposite: 'right';
     $orientation-y-opposite: 'top';
+    @if(map-get($parameters, graph-invert)){
+        $orientation-x: 'left';
+        $orientation-y: 'top';
+        $orientation-x-opposite: 'right';
+        $orientation-y-opposite: 'bottom';
+    }
     $legend-axe: map-get($parameters, legend-axe);
 
     // Flex variables
     $flex-orientation: map-get($parameters, flex-orientation);
     $flex-justify: map-get($parameters, flex-justify);
     $flex-align: map-get($parameters, flex-align);
+    @if(map-get($parameters, graph-invert)){
+        $flex-align: 'flex-start';
+    }
 
     // Modify values for horizontal orientation
     @if(map-get($parameters, graph-type) == 'horizontal-bars') {
@@ -143,6 +152,12 @@ $defaultParameters: (
         $orientation-y: 'left';
         $orientation-x-opposite: 'bottom';
         $orientation-y-opposite: 'right';
+        @if(map-get($parameters, graph-invert)){
+            $orientation-x: 'top';
+            $orientation-y: 'right';
+            $orientation-x-opposite: 'bottom';
+            $orientation-y-opposite: 'left';
+        }
         $legend-axe: 'left';
         @if(map-get($parameters, legend-position) == 'right'){
             $legend-axe: 'right';
@@ -152,6 +167,9 @@ $defaultParameters: (
         $flex-orientation: 'column';
         $flex-justify: 'flex-start';
         $flex-align: 'flex-start';
+        @if(map-get($parameters, graph-invert)){
+            $flex-align: 'flex-end';
+        }
     }
 
     .#{$className} {
@@ -172,6 +190,10 @@ $defaultParameters: (
                 #{$orientation-y}: 0;
 
                 &:before {
+                    @if(map-get($parameters, graph-type) == 'horizontal-bars') {
+                        position: absolute;
+                        #{$orientation-y}: 5px;
+                    }
                     font-family: map-get($parameters, legend-font-family);
                     font-size: to-length(map-get($parameters, legend-font-size), map-get($parameters, units-font));
                     line-height: to-length(map-get($parameters, legend-line-height), map-get($parameters, units-font));
@@ -285,15 +307,15 @@ $defaultParameters: (
                                     position: absolute;
 
                                     @if(map-get($parameters, graph-type) == 'horizontal-bars'){
-                                        top: 50%;
-                                        left: 100%;
-                                        padding-left: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units));
-                                        text-align: left;
+                                        #{$orientation-x}: 50%;
+                                        #{$orientation-y}: 100%;
+                                        padding-#{$orientation-y}: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units));
+                                        text-align: #{$orientation-y};
                                         line-height: 0;
                                     } @else {
                                         width: 100%;
-                                        bottom: 100%;
-                                        padding-bottom: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units));
+                                        #{$orientation-y}: 100%;
+                                        padding-#{$orientation-y}: to-length(map-get($parameters, value-margin-bar), map-get($parameters, units));
                                         text-align: center;
                                     }
 

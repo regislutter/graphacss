@@ -23,7 +23,7 @@
     display: block;
     bottom: 0;
     left: 0;
-    bottom: 0; }
+    top: 0; }
     .redinvert__steps_step:before {
       font-family: "Helvetica", sans-serif;
       font-size: 14px;
@@ -32,33 +32,33 @@
     .redinvert__steps_step:nth-child(1):before {
       content: "0"; }
     .redinvert__steps_step:nth-child(1) {
-      bottom: 0px;
+      top: 0px;
       width: 100%;
-      border-bottom: 1px solid #DADADA; }
+      border-top: 1px solid #DADADA; }
       .redinvert__steps_step:nth-child(1):before {
         content: "0"; }
     .redinvert__steps_step:nth-child(2) {
-      bottom: 66px;
+      top: 66px;
       width: 100%;
-      border-bottom: 1px solid #DADADA; }
+      border-top: 1px solid #DADADA; }
       .redinvert__steps_step:nth-child(2):before {
         content: "5"; }
     .redinvert__steps_step:nth-child(3) {
-      bottom: 132px;
+      top: 132px;
       width: 100%;
-      border-bottom: 1px solid #DADADA; }
+      border-top: 1px solid #DADADA; }
       .redinvert__steps_step:nth-child(3):before {
         content: "10"; }
     .redinvert__steps_step:nth-child(4) {
-      bottom: 198px;
+      top: 198px;
       width: 100%;
-      border-bottom: 1px solid #DADADA; }
+      border-top: 1px solid #DADADA; }
       .redinvert__steps_step:nth-child(4):before {
         content: "15"; }
     .redinvert__steps_step:nth-child(5) {
-      bottom: 264px;
+      top: 264px;
       width: 100%;
-      border-bottom: 1px solid #DADADA; }
+      border-top: 1px solid #DADADA; }
       .redinvert__steps_step:nth-child(5):before {
         content: "20"; }
   .redinvert__bars {
@@ -66,7 +66,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-items: flex-end;
+    align-items: flex-start;
     width: 100%;
     height: 100%; }
     .redinvert__bars_bar {
@@ -89,8 +89,8 @@
           content: "-22";
           position: absolute;
           width: 100%;
-          bottom: 100%;
-          padding-bottom: 5px;
+          top: 100%;
+          padding-top: 5px;
           text-align: center;
           color: #D4451D;
           font-family: "Helvetica", sans-serif;
@@ -103,8 +103,8 @@
           content: "-16.3";
           position: absolute;
           width: 100%;
-          bottom: 100%;
-          padding-bottom: 5px;
+          top: 100%;
+          padding-top: 5px;
           text-align: center;
           color: #918F90;
           font-family: "Helvetica", sans-serif;
@@ -117,8 +117,8 @@
           content: "-16";
           position: absolute;
           width: 100%;
-          bottom: 100%;
-          padding-bottom: 5px;
+          top: 100%;
+          padding-top: 5px;
           text-align: center;
           color: #CFCECE;
           font-family: "Helvetica", sans-serif;
@@ -131,8 +131,8 @@
           content: "-14.2";
           position: absolute;
           width: 100%;
-          bottom: 100%;
-          padding-bottom: 5px;
+          top: 100%;
+          padding-top: 5px;
           text-align: center;
           color: #E5E4E4;
           font-family: "Helvetica", sans-serif;
@@ -146,8 +146,8 @@
           content: "-13.6";
           position: absolute;
           width: 100%;
-          bottom: 100%;
-          padding-bottom: 5px;
+          top: 100%;
+          padding-top: 5px;
           text-align: center;
           color: #D4451D;
           font-family: "Helvetica", sans-serif;
@@ -160,8 +160,8 @@
           content: "-9.7";
           position: absolute;
           width: 100%;
-          bottom: 100%;
-          padding-bottom: 5px;
+          top: 100%;
+          padding-top: 5px;
           text-align: center;
           color: #918F90;
           font-family: "Helvetica", sans-serif;
@@ -174,8 +174,8 @@
           content: "-10.3";
           position: absolute;
           width: 100%;
-          bottom: 100%;
-          padding-bottom: 5px;
+          top: 100%;
+          padding-top: 5px;
           text-align: center;
           color: #CFCECE;
           font-family: "Helvetica", sans-serif;
@@ -188,8 +188,8 @@
           content: "-9.3";
           position: absolute;
           width: 100%;
-          bottom: 100%;
-          padding-bottom: 5px;
+          top: 100%;
+          padding-top: 5px;
           text-align: center;
           color: #E5E4E4;
           font-family: "Helvetica", sans-serif;
@@ -587,6 +587,8 @@
     top: 0;
     left: 0; }
     .demo2__steps_step:before {
+      position: absolute;
+      left: 5px;
       font-family: "Helvetica", sans-serif;
       font-size: 14px;
       line-height: 16px;
@@ -868,6 +870,8 @@
     top: 0;
     left: 0; }
     .thematrix__steps_step:before {
+      position: absolute;
+      left: 5px;
       font-family: "Helvetica", sans-serif;
       font-size: 14px;
       line-height: 16px;

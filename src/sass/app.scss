@@ -13,7 +13,9 @@ $values: (SBP1: 22.0, SBP2: 16.3, SBP3: 16.0, SBP4: 14.2, DBP1: 13.6, DBP2: 9.7,
 $barColors: (#D4451D, #918F90, #CFCECE, #E5E4E4); // Colors for the bars
 $redInvertParams: $defaultParameters; // Duplicate default parameters
 $redInvertParams: map-merge($redInvertParams, (graphic-background: #FFF));
+//$redInvertParams: map-merge($redInvertParams, (graph-type: 'horizontal-bars'));
 $redInvertParams: map-merge($redInvertParams, (flex-graph: false));
+$redInvertParams: map-merge($redInvertParams, (graph-invert: true));
 $redInvertParams: map-merge($redInvertParams, (graphic-width: 630));
 $redInvertParams: map-merge($redInvertParams, (graphic-height: 330));
 $redInvertParams: map-merge($redInvertParams, (bar-width: 30));
