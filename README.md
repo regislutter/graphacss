@@ -1,6 +1,6 @@
-# [Graphacss - when graphics meet SASS](https://github.com/zetura/graphacss)
+# [GraphaCSS - when graphs meet SASS](https://github.com/zetura/graphacss)
 
-Graphacss is a graphic pre-processor made entirely with SASS. You will not require any JavaScript library
+GraphaCSS is a graph pre-processor made entirely with SASS. You will not require any JavaScript library
 to have animated charts anymore.
 
 The goal is to have very lightweight charts using static HTML/CSS and CSS3 animations.
@@ -13,14 +13,6 @@ Clone the git repo — `git clone
 Install gulp - `npm install`
 
 Go to the index.html file with your browser
-
-## Features
-
-## TO DO list
-
-* Grouping bars
-* Multiple charts generator
-* Responsive charts
 
 ## Browser support
 
